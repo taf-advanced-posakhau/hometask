@@ -3,179 +3,75 @@ import { bgBlue } from 'colors';
 import { localRunnerConfiguration } from './localRunnerConfiguration'
 import { suitesRunnerConfig } from './suitesRunnerConfiguration'
 
-let stepNumber = 1;
 
+let stepNumber = 1;
+let startTime;
+
+const rimraf = require('rimraf');
+const { removeSync } = require('fs-extra');
+const fs = require('fs');
+const htmlReporter = require('cucumber-html-reporter');
+const { generate } = require('multiple-cucumber-html-reporter');
+const cucumberJson = require('wdio-cucumberjs-json-reporter').default;
+
+const pathToJsonReportsDir = `.tmp/json`;
+const pathToTestReportsDir = 'core_layer/reporter/test_reports/test_artifacts/trr/';
+const pathToHtmlReportDir = `${pathToTestReportsDir}html/`;
+const pathToHtmlReport = `${pathToHtmlReportDir}cucumber_report.html`;
+const pathToCucumberJsonReport = `${pathToJsonReportsDir}cucumber_report.json`;
+
+
+let options = {
+    theme: 'bootstrap',
+    jsonDir: `${pathToJsonReportsDir}`,
+    output: `${pathToHtmlReport}`,
+    screenshotsDirectory: 'screenshots/',
+    storeScreenshots: true,
+    ignoreBadJsonFile: true,
+    reportSuiteAsScenarios: true,
+    scenarioTimestamp: true,
+    name: 'Test results : WebdriverIO',
+    brandTitle: 'TAF ADVANCED',
+    metadata: {},
+    format: [
+        `json:${pathToCucumberJsonReport}`
+    ]
+};
 
 export const config: Options.Testrunner = {
 
-
-    //
-    // ====================
-    // Runner Configuration
-    // ====================
-    //
-    //
-    // =====================
-    // ts-node Configurations
-    // =====================
-    //
-    // You can write tests using TypeScript to get autocompletion and type safety.
-    // You will need typescript and ts-node installed as devDependencies.
-    // WebdriverIO will automatically detect if these dependencies are installed
-    // and will compile your config and tests for you.
-    // If you need to configure how ts-node runs please use the
-    // environment variables for ts-node or use wdio config's autoCompileOpts section.
-    //
- 
-
     autoCompileOpts: {
-        autoCompile: true,
-        // see https://github.com/TypeStrong/ts-node#cli-and-programmatic-options
-        // for all available options
+        autoCompile: true,      
         tsNodeOpts: {
             transpileOnly: true,
             project: 'core_layer/config/tsconfig.json'
-        }
-        // tsconfig-paths is only used if "tsConfigPathsOpts" are provided, if you
-        // do please make sure "tsconfig-paths" is installed as dependency
-        // tsConfigPathsOpts: {
-        //     baseUrl: './'
-        // }
+        }     
     },
-    //
-    // ==================
-    // Specify Test Files
-    // ==================
-    // Define which test specs should run. The pattern is relative to the directory
-    // from which `wdio` was called.
-    //
-    // The specs are defined as an array of spec files (optionally using wildcards
-    // that will be expanded). The test for each spec file will be run in a separate
-    // worker process. In order to have a group of spec files run in the same worker
-    // process simply enclose them in an array within the specs array.
-    //
-    // If you are calling `wdio` from an NPM script (see https://docs.npmjs.com/cli/run-script),
-    // then the current working directory is where your `package.json` resides, so `wdio`
-    // will be called from there.
-    //
+   
     specs: [
         '.test_layer/features/**/*.feature'
     ],
-    suites: suitesRunnerConfig,
-    // Patterns to exclude.
+    suites: suitesRunnerConfig,  
     exclude: [
         // 'path/to/excluded/files'
-    ],
-    //
-    // ============
-    // Capabilities
-    // ============
-    // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
-    // time. Depending on the number of capabilities, WebdriverIO launches several test
-    // sessions. Within your capabilities you can overwrite the spec and exclude options in
-    // order to group specific specs to a specific capability.
-    //
-    // First, you can define how many instances should be started at the same time. Let's
-    // say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have
-    // set maxInstances to 1; wdio will spawn 3 processes. Therefore, if you have 10 spec
-    // files and you set maxInstances to 10, all spec files will get tested at the same time
-    // and 30 processes will get spawned. The property handles how many capabilities
-    // from the same test should run tests.
-    //
-    maxInstances: 10,
-    //
-    // If you have trouble getting all important capabilities together, check out the
-    // Sauce Labs platform configurator - a great tool to configure your capabilities:
-    // https://saucelabs.com/platform/platform-configurator
-    //
+    ],   
+    maxInstances: 10,  
     capabilities: [{
-    
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
         maxInstances: 5,
         'goog:chromeOptions': localRunnerConfiguration.googleChromeOptions,
         browserName: 'chrome',        
-        acceptInsecureCerts: true
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to include/exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-        // excludeDriverLogs: ['bugreport', 'server'],
-    }],
-    //
-    // ===================
-    // Test Configurations
-    // ===================
-    // Define all options that are relevant for the WebdriverIO instance here
-    //
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
+        acceptInsecureCerts: true     
+    }],   
     logLevel: 'error',
-    //
-    // Set specific log levels per logger
-    // loggers:
-    // - webdriver, webdriverio
-    // - @wdio/browserstack-service, @wdio/devtools-service, @wdio/sauce-service
-    // - @wdio/mocha-framework, @wdio/jasmine-framework
-    // - @wdio/local-runner
-    // - @wdio/sumologic-reporter
-    // - @wdio/cli, @wdio/config, @wdio/utils
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
-    // logLevels: {
-    //     webdriver: 'info',
-    //     '@wdio/appium-service': 'info'
-    // },
-    //
-    // If you only want to run your tests until a specific amount of tests have failed use
-    // bail (default is 0 - don't bail, run all tests).
-    bail: 0,
-    //
-    // Set a base URL in order to shorten url command calls. If your `url` parameter starts
-    // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
-    // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
-    // gets prepended directly.
-    baseUrl: 'http://localhost:8080',
-    //
-    // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
-    //
-    // Default timeout in milliseconds for request
-    // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 120000,
-    //
-    // Default request retries count
-    connectionRetryCount: 3,
-    //
-    // Test runner services
-    // Services take over a specific job you don't want to take care of. They enhance
-    // your test setup with almost no effort. Unlike plugins, they don't add new
-    // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'], 
-    
-    // Framework you want to run your specs with.
-    // The following are supported: Mocha, Jasmine, and Cucumber
-    // see also: https://webdriver.io/docs/frameworks
-    //
-    // Make sure you have the wdio adapter package for the specific framework installed
-    // before running any tests.
-    framework: 'cucumber',
-    //
-    // The number of times to retry the entire specfile when it fails as a whole
-    // specFileRetries: 1,
-    //
-    // Delay in seconds between the spec file retry attempts
-    // specFileRetriesDelay: 0,
-    //
-    // Whether or not retried specfiles should be retried immediately or deferred to the end of the queue
-    // specFileRetriesDeferred: false,
-    //
-    // Test reporter for stdout.
-    // The only one supported by default is 'dot'
-    // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    bail: 0,   
+    baseUrl: 'http://localhost:8080',  
+    waitforTimeout: 10000, 
+    connectionRetryTimeout: 120000, 
+    connectionRetryCount: 3,   
+    services: ['chromedriver'],    
+    framework: 'cucumber',   
+    reporters: ['cucumberjs-json'],
 
-
-    //
-    // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
         require: ['./business_layer/step_definitions/**/**.ts'],
@@ -188,6 +84,7 @@ export const config: Options.Testrunner = {
         // <boolean> abort the run on first failure
         failFast: false,
         // <boolean> hide step definition snippets for pending steps
+        format: [`json:${pathToCucumberJsonReport}`, require.resolve('cucumber-pretty')],
         snippets: true,
         // <boolean> hide source uris
         source: true,
@@ -200,171 +97,99 @@ export const config: Options.Testrunner = {
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
-    
-    //
-    // =====
-    // Hooks
-    // =====
-    // WebdriverIO provides several hooks you can use to interfere with the test process in order to enhance
-    // it and to build services around it. You can either apply a single function or an array of
-    // methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got
-    // resolved to continue.
-    /**
-     * Gets executed once before all workers get launched.
-     * @param {Object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     */
-    // onPrepare: function (config, capabilities) {
-    // },
-    /**
-     * Gets executed before a worker process is spawned and can be used to initialise specific service
-     * for that worker as well as modify runtime environments in an async fashion.
-     * @param  {String} cid      capability id (e.g 0-0)
-     * @param  {[type]} caps     object containing capabilities for session that will be spawn in the worker
-     * @param  {[type]} specs    specs to be run in the worker process
-     * @param  {[type]} args     object that will be merged with the main configuration once worker is initialized
-     * @param  {[type]} execArgv list of string arguments passed to the worker process
-     */
-    // onWorkerStart: function (cid, caps, specs, args, execArgv) {
-    // },
-    /**
-     * Gets executed just after a worker process has exited.
-     * @param  {String} cid      capability id (e.g 0-0)
-     * @param  {Number} exitCode 0 - success, 1 - fail
-     * @param  {[type]} specs    specs to be run in the worker process
-     * @param  {Number} retries  number of retries used
-     */
-    // onWorkerEnd: function (cid, exitCode, specs, retries) {
-    // },
-    /**
-     * Gets executed just before initialising the webdriver session and test framework. It allows you
-     * to manipulate configurations depending on the capability or spec.
-     * @param {Object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that are to be run
-     * @param {String} cid worker id (e.g. 0-0)
-     */
-    // beforeSession: function (config, capabilities, specs, cid) {
-    // },
-    /**
-     * Gets executed before test execution begins. At this point you can access to all global
-     * variables like `browser`. It is the perfect place to define custom commands.
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs        List of spec file paths that are to be run
-     * @param {Object}         browser      instance of created browser/device session
-     */
-    // before: function (capabilities, specs) {
-    // },
-    /**
-     * Runs before a WebdriverIO command gets executed.
-     * @param {String} commandName hook command name
-     * @param {Array} args arguments that command would receive
-     */
-    // beforeCommand: function (commandName, args) {
-    // },
-    /**
-     * Cucumber Hooks
-     *
-     * Runs before a Cucumber Feature.
-     * @param {String}                   uri      path to feature file
-     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
-     */
-    // beforeFeature: function (uri, feature) {
-    // },
-    /**
-     *
-     * Runs before a Cucumber Scenario.
-     * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
-     * @param {Object}                 context  Cucumber World object
-     */
-    // beforeScenario: function (world, context) {
-    // },
-    /**
-     *
-     * Runs before a Cucumber Step.
-     * @param {Pickle.IPickleStep} step     step data
-     * @param {IPickle}            scenario scenario pickle
-     * @param {Object}             context  Cucumber World object
-     */
+ 
+     onPrepare() {
+        rimraf.sync(`${pathToJsonReportsDir}*`);
+        rimraf.sync(`${pathToHtmlReportDir}*`);       
+        const date = new Date();
+        startTime = date.getTime();
+        require('ts-node').register({
+            project: 'core_layer/config/tsconfig.json'
+        });
+    },
+
      beforeStep: function (step, scenario, context) {
         console.log(bgBlue(`Executing step No ${stepNumber} :: ${step.text}`));
         stepNumber++;
     },
-    /**
-     *
-     * Runs after a Cucumber Step.
-     * @param {Pickle.IPickleStep} step             step data
-     * @param {IPickle}            scenario         scenario pickle
-     * @param {Object}             result           results object containing scenario results
-     * @param {boolean}            result.passed    true if scenario has passed
-     * @param {string}             result.error     error stack if scenario failed
-     * @param {number}             result.duration  duration of scenario in milliseconds
-     * @param {Object}             context          Cucumber World object
-     */
-    // afterStep: function (step, scenario, result, context) {
-    // },
-    /**
-     *
-     * Runs after a Cucumber Scenario.
-     * @param {ITestCaseHookParameter} world            world object containing information on pickle and test step
-     * @param {Object}                 result           results object containing scenario results
-     * @param {boolean}                result.passed    true if scenario has passed
-     * @param {string}                 result.error     error stack if scenario failed
-     * @param {number}                 result.duration  duration of scenario in milliseconds
-     * @param {Object}                 context          Cucumber World object
-     */
-    // afterScenario: function (world, result, context) {
-    // },
-    /**
-     *
-     * Runs after a Cucumber Feature.
-     * @param {String}                   uri      path to feature file
-     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
-     */
-    // afterFeature: function (uri, feature) {
-    // },
-    
-    /**
-     * Runs after a WebdriverIO command gets executed
-     * @param {String} commandName hook command name
-     * @param {Array} args arguments that command would receive
-     * @param {Number} result 0 - command success, 1 - command error
-     * @param {Object} error error object if any
-     */
-    // afterCommand: function (commandName, args, result, error) {
-    // },
-    /**
-     * Gets executed after all tests are done. You still have access to all global variables from
-     * the test.
-     * @param {Number} result 0 - test pass, 1 - test fail
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
-     */
-    // after: function (result, capabilities, specs) {
-    // },
-    /**
-     * Gets executed right after terminating the webdriver session.
-     * @param {Object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
-     */
-    // afterSession: function (config, capabilities, specs) {
-    // },
-    /**
-     * Gets executed after all workers got shut down and the process is about to exit. An error
-     * thrown in the onComplete hook will result in the test run failing.
-     * @param {Object} exitCode 0 - success, 1 - fail
-     * @param {Object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {<Object>} results object containing test results
-     */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
-    /**
-    * Gets executed when a refresh happens.
-    * @param {String} oldSessionId session ID of the old session
-    * @param {String} newSessionId session ID of the new session
-    */
-    // onReload: function(oldSessionId, newSessionId) {
-    // }
+   
+     onComplete() {
+        console.log(`STARTED AFTER SESSION HOOK ...................................... `);
+        generate({         
+            jsonDir: pathToJsonReportsDir,
+            reportPath: 'core_layer/reporter/test_reports/test_artifacts/trr/html',
+           
+        });
+
+        const date1 = new Date();
+        const endTime = date1.getTime();
+        const totalTime = endTime - startTime;
+        const h = Math.floor(totalTime / (60 * 60 * 1000));
+        const m = Math.floor((totalTime % (60 * 60 * 1000)) / (60 * 1000));
+        const s = Math.floor((totalTime % (60 * 1000)) / 1000);
+        const time = `${h} hour(s), ${m} minutes, ${s} seconds`;
+
+        options.metadata = {
+            'Total Test(s) Execution Time': time
+        };
+        htmlReporter.generate(options, () => {
+            console.log(`STARTED REPORT GENERATION ...................................... `);
+            rimraf.sync(`${pathToJsonReportsDir}*`);
+        });
+
+        if (fs.existsSync(pathToHtmlReport)) {
+            let originalReport = fs.readFileSync((pathToHtmlReport), { encoding: 'utf-8' }).toString().split('\n');
+            const pathToEpamLogo = [`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAABOCAYAAABlsVlbAAAABmJLR0QAwgC5ALkSpM5zAAAACXBIWXMAAAs`,
+                `TAAALEwEAmpwYAAAAB3RJTUUH3wEeDTABAoOYcAAADRBJREFUeNrtnXuQHEUdxz93lwR55EEIUZ6SF5cBIgHCY8BMAmY6oAixhMIqRIHSKCAikEIkFoVK5BEN`,
+                `EgssoJQSgg9KJSol2mOkGKBGSEKSCzCER4BQVDhCEiGBkOTu1j+6V4fJzszu3szeXba/VVO7O9uP6Z7ft3+/7v51NxgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYG`,
+                `BgYGBgYGBgYGBgYGBgYGBgYGBgY1AXhilzC5Jm3cEVheRZZprQ0e1PPRddFkWgZ4ORoAdqATwKnAIcBHwNKQBfwJvAU8BzQIz3ZU0WabQn1UpKe7I7l3Qp8Cp`,
+                `gG7A9sAZYBjwFd0pOlagVTerIsSG3AEOBEnfboyPNsBl4AfOB9oLscT3oyq44qoVuXK1r24cBM4HAdby3wCLAhrf6EK1p1+JOBE4ARwCbgSWCprv9S2rMaguT`,
+                `UymmhmAl8F5gCDM2I1gWsAu6VnrwjQ6AWAWfEbrcCq6UnHR1mGnA9cBKwVyUyacG4SnpyaUZ+5fK0ADcDZwETq6iKNzQRr5SefCcpD+GKzwAPVog/GDhNenKZ`,
+                `JuaPgXOB8Qn5vQTMl568p6wRIsS6FLgYODZBpj4A/q7DvBuNawhSjNa4SZOjHjwDnCo9+V4loRKuWAycXSHeKunJycIVC4Ara3lk6UkvIa8yOSZqzbN3nWU6R`,
+                `3ryjwl5nK41QCWcAGwFngBGVpnXD6Qnb9Bpj9dpj68y7gZgrPTkVqNBirOPfwt8qZfJrZWeHFcjQVZqYfp0jXmVtNnx74QW/nggSDGDqsX50pO/qZB+GkHuBS`,
+                `4ABtWY1yyt5ebV8dwhcLT05M6BIHetff0Ath+26M/UcFq4pudADoCxwhWLa1Tzk+sgR7kRujXSx4gT/v6c3sMDwhVjauwQX1QHOQAe0uZgPaSeqE2xNJlorUY`,
+                `mdnuC2H5I4Fgl2w/vS7Dl4/hHjtmfJVxxTINGWKYKV4yJElIT5gtAe46a/KoG2fYtvYw7OyPMUNsPnw4cq89JMqgPydGiybEEOEqbImnm1Qw9upOEDuBvwNv6`,
+                `93BgKnBayov6rPTkijqL0KFHZzYAwwAXmJAS/lvA1bF7t6eE/wC4E1ijBxnatK3/NWBUQpwLgcvrHCnq0abYGv19qh5JqxarUCOGm4CDgC+nkOnMaB8s4VmOt`,
+                `f1QBo4lmoogWmuUNcdjgKNHZFLNK+GKqSlB5ktPXhM1XSIjLLOBuxLizdR2dC39iWeAM6Un36pA5NuBbyfEPT1KEOGK0cAhCWFflZ4cG+vIlz+vA9YDH68Qbx`,
+                `/hCkt6spZmdwtwi/TkvArlmQ/MSYnbrUkxS3pyQyzuXGBdQrzRVYxkdQOu7YcrgCmBY3WXZWe3NrHKBbT9cKUmR7U4KuH+dunJa6LEiJAD6cm7gX8lxD26xhb`,
+                `2c9KTU6Qn34qbZvr3HOD1hPjxUaJxaaZSvIWNfJZQw8tJmFFDme7So0rzYv2i8ve5WiNUQidwsvTkKdKTG+JxpSffABbmIDKTgQ7bDwc3mhwNJUjZlrT9cITt`,
+                `h501CifAoQn3H0xqjSL37kyIO6yG/FdKTz5SIe3o750prWarnogrY1RKXn5SmbQgdqImQSuhvYYy3QO8U6lM+ntJ51WxrZOefDolLsDTOYnPEcBa2w9HNLrz3`,
+                `jCCRNi/uqxia8SIhPuvVxF3XQ5FyByx0YKxo8r09kz5b1NGHj3AtoQgw2sxsavoq5TqrQ/dYOSFgzVJ9mikJimcIBHNMc72wzd1QevBkF48RjcDCFUKbamAEa`,
+                `b+jn2BF20/HL9bEKTcqbL98EDgZeDAXiS3O794g9pM7ZfKJCna3CqUIJoch6JmT7NUcY959wYaO6owVZfZfnh40eZWIQSJmFXH6T5CWme4E7ACx9pu5MJAN6z`,
+                `bA8camtG/HAassf1wSpGapLWgAmL74WkoB7w0bASOCBxrR39wKzDoH4jIwiQtI2km91LbD88tSpO0FlEw2w9nAktSOpIALwIHBY61qUyqJsM21FBt/HrHaBCr`,
+                `/LkFOAC1BiZtwOJ3th/OKEKTtOZdMNsPL0L5/qd1rJ8LHKs9cKztTaw5HkYt8IpfB6RF0vMgpWaoID3IszNwLAt4PEWTtAKe7YcX5+2/NSjHgmD74ZXAAv0Ck`,
+                `8ixJHCsGfHWotmgZ8S7ssJFZ9OFK4ahFjWdhVpF2RSaRHt8T0d5RExLifJL2w/3Cxxrfl5uKYNyJMe1qIVMaZpjRZQceWpB4YqkeZIe1Oq5AQetLfYWrjgC+B`,
+                `HKd6wZTa6S7YelwLGm2374qCZLEm61/fD9wLHu7BcmlibH1RFyJOFXqOWxeduJs4UrnkMtaKp0daAWWQ0UQpS/nwN4wCsol42mJEdMzkB5Tf80I/gdth/e2G9`,
+                `MLOD8jP/vCRxrdpkYOZtVo0j3axpIaBeu+DrwHXq/wnB3JUlX4FhzbD/cG/hmSvALge/3F4Kk2dL3lsnRrP2NKjRGCyC1fT3Y1Ey2Jgkc6xLbDzcB1yUEzcW9`,
+                `qGhfrJ8FjnWxIUdiRx2U68SrKDf1asnRDWw3JLHmkuypzUAgyBkx+9HgoxqkFfgr1Y1I9aAWN12Gctxc18x1p2VqL3bdoilXFL2isN32wxcBO3CsjUaT7ILzU`,
+                `JvDpWErcBvwZ+nJ5ZpYezRzpenGdhRq77ExA5kgoNZpr7f98JDAsToLIMmf9FWP7T6kj9/1z1P+2wx8T3ryrlh/BZpkojAFo1GeGMOLzigvglxG+uqxwcDzth`,
+                `9OCBxrU84kWS49+UBvO8qN3ulPuOJAYL+EvzcA7dKTm/vq+fqj1tBm1VhgBdmrQS/oF30Q/eBLyd6vaiSw0fbD6Tn3SXq1TiS6hr3BSOt3LCiTow+frz+Sw0H`,
+                `tupJFjs8HjuXnIWO5TBTqz9+jJgKz/Pgftf3wSNMXYd+U/54aaJs8N4AcxwL/zLB6tgHHB471cF5WSmvOBVkOHA+8lxH8WdsPz490uPpFGRqMtD7TZkOOj5Dj`,
+                `QmB5Rp3tBE4KHGtZniZ8bp30yAN1oLaleYr0XdcX2X7YFjjWfb0sUCZB9HDqyArmWIv05Nt99P7TTMMeQ47/kWMWag/hNPwHmBg4VmdMFvuPBokSJXCsELXv0`,
+                `8sZIy6/tv1wbgPmSUbqju/bsasTg/5MjrmofYDT8BowpjxCmjeKNE82aE2yPiPcjbYfLqT4TRm6jegNDGhy3ARkORyuQ20s927emqNwgmhNshG1kdmqjOCzUC`,
+                `dDGRhg++FQdt3HOI4ngAmBY70bOFZh80KtDWgNtgaONZnk7T+LtOUNBi7ShP4x1KbkO4p+iNYGtQig1jM8X0Dyxi28ufB44FjTgZ2NmCpoCEG0udUVONaR1O9`,
+                `9mdSipJpmkTXcjSKS0WjFYUHgWE5R/Y0+I0hsdOIylO9Urfgw4f6paZH0fEJ7FSTKwj5p4fXRz20k7yFconofqn2T8ohozUFNRo4HA8e6utFe4Q0lSGTW/YvA`,
+                `tTVGfyvh/nHCFZMqCW7kd5Kv1isREmVhnHDFC8IVY8vndUTz02mMJNk7tzt2jHLaqNrp8SPbynkIV1iopcSHNRE5Lg0c67xGao4y+qwVChzrFtsPe4Bbq2xZV`,
+                `5N8nogUrvgG0CFc8Z5Obw9gjHDFDSnC9GSNj90OvCJc8QfgPuA14Yot2sybhJrQSqrTlbHfW1LyuVa44g3gUeGKbSjfownAV1A7mjQTrg8c6xd9tVSiL49gQ2`,
+                `/PMgh9YEwGlqC8hivhE8Bi1Ax0KaYh07TkX+p8/HP0Fc0vq48TP4E2a8HTHREt08LAdanpzeDLFYFjLewLzdEnJlbc3NIkuQk1ZNeV0Zd4iJRzM7QQlW3z8pV`,
+                `Wvu2oMw17W39tVZDjw7hLvvTkWvQEV4aQtDUhOXYCMwPHWti0h3jG+iSrq4xyMunbUNYCV3pyWw3hu6rQSElImhG+XJtqtaKrP7y/AuXiQ20x9PkK1AHTMmn3`,
+                `7zX8//TU3uAK6cnHazwC+lngq3Xk9Sxwc8IAwv0oL9VasAV1XvtaDAxBYiM4aFPlGN1prxUvA0J6cmEd6y1apCcXAUeiTrqtBg9LT05CjWDtUh59b1qV6XWhN`,
+                `pI7GLWibnCKWRY3PdPM0nqtjGq014CfExpQKjpCkpXCFcdpYbkEtflB0iGfG1HzLrcBa6Unt/dmMZL05PPCFSeizgKfgxpZiq5w6wYWATdkdcT1c7wvXHECar`,
+                `HZD4G4WlsP3I1av75R10EbavRvZIUGryN2bw3qtNpKjWPWQEE38BNg/wpx11RRXR0JeRu/uz4yw/YSrhiur30qCWQVaSwWrihVuFYmpSNc0arzHFJrfgnp7ak`,
+                `3qiaP9Io0e+t9hvg8Un+FcYuoQBDg7Ap/rZKenGxqyPRBDAwMDEEMDAxBDAwMQQwMDEEMDAxBDAwMQQwMDEEMDAxBdk8kud+Yo9GMMBgA89h1q8sW1PaWBgbN`,
+                `i2r8hwwMDAwMDAwMDAwMeoX/AvIUC7QuAK91AAAAAElFTkSuQmCC`].join('');
+            const htmlCodeForEpamLogo = [`<a href=""><img class="navbar-header"
+                  width="158" height="56" src="${pathToEpamLogo}" alt="EPAM Logo"/></a>`].join('');
+
+            originalReport.splice(278, 0, htmlCodeForEpamLogo);
+            const modTrr = originalReport.join('\n');
+            fs.writeFileSync(pathToHtmlReport, modTrr, function (err) {
+                if (err) {
+                    console.log(err);
+                    return fs.closeSync(fs.openSync(pathToHtmlReport, 'w'));
+                }
+                return fs.closeSync(fs.openSync(pathToHtmlReport, 'w'));
+            });
+        }
+    },
 }
