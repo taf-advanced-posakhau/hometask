@@ -1,4 +1,5 @@
 # hometask
+
 hometask for TAF Advanced Learning program , started Sep 06 2022
 
 Automated Testing Mentoring Program: Advanced_Global
@@ -7,4 +8,8 @@ Advanced Automated Testing Mentoring Program is intended for E2 level specialist
 
 The Program participants will have an opportunity to choose the technology stack (Java/.NET/JS) and some specific tools to work with during the program run that would help them to gain necessary experience and knowledge about wider range of tools used for testing.
 
- 
+SCRIPTS TO RUN :
+
+npm rum all - starts run of all features
+
+npm run smoke - starts execution of smoke test
