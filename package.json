@@ -18,6 +18,9 @@
     },
     "scripts": {
         "all": "npx wdio run wdio.conf.ts --suite main",
-        "smoke": "npx wdio run core_layer/config/wdio.conf.ts --suite smoke"        
+        "smoke": "npx wdio run core_layer/config/wdio.conf.ts --suite smoke"
+    },
+    "dependencies": {
+        "colors": "^1.4.0"
     }
 }
