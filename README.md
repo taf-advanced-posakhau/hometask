@@ -8,8 +8,8 @@ Advanced Automated Testing Mentoring Program is intended for E2 level specialist
 
 The Program participants will have an opportunity to choose the technology stack (Java/.NET/JS) and some specific tools to work with during the program run that would help them to gain necessary experience and knowledge about wider range of tools used for testing.
 
-SCRIPTS TO RUN :
+<b>SCRIPTS TO RUN : </b>
 
-npm rum all - starts run of all features
+<b>npm run all</b> - starts run of all features
 
-npm run smoke - starts execution of smoke test
+<b>npm run smoke </b> - starts execution of smoke test
