@@ -1,6 +1,10 @@
 import type { Options } from '@wdio/types'
+import { bgBlue } from 'colors';
 import { localRunnerConfiguration } from './localRunnerConfiguration'
 import { suitesRunnerConfig } from './suitesRunnerConfiguration'
+
+let stepNumber = 1;
+
 
 export const config: Options.Testrunner = {
 
@@ -174,7 +178,7 @@ export const config: Options.Testrunner = {
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
-        require: ['./business_layer/step_definitions/**/*.ts'],
+        require: ['./business_layer/step_definitions/**/**.ts'],
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
@@ -282,8 +286,10 @@ export const config: Options.Testrunner = {
      * @param {IPickle}            scenario scenario pickle
      * @param {Object}             context  Cucumber World object
      */
-    // beforeStep: function (step, scenario, context) {
-    // },
+     beforeStep: function (step, scenario, context) {
+        console.log(bgBlue(`Executing step No ${stepNumber} :: ${step.text}`));
+        stepNumber++;
+    },
     /**
      *
      * Runs after a Cucumber Step.

@@ -1,0 +1,8 @@
+{
+    "cucumber-gotostep.srcPath": "business_layer/step_definiions/**/*.ts",
+    "cucumberautocomplete.steps": [
+        "business_layer/step_definitions/**/*.ts"
+    ],
+    "cucumberautocomplete.syncfeatures": "test_layer/features/**/*.feature",
+    "cucumberautocomplete.strictGherkinCompletion": true    
+}
