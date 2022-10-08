@@ -1,0 +1,235 @@
+[
+  {
+    "keyword": "Feature",
+    "type": "feature",
+    "description": "",
+    "line": 5,
+    "name": "SMOKE TEST - CREATING NEW FILTER AND VERIFY IT APPEARANCE AT FILTERS DASHBOARD PAGE",
+    "uri": "D:\\SENIOR TEST AUTOMATION LAB\\TAF ADVANCED PROGRAM\\REPO\\hometask\\test_layer\\features\\smoke_test.feature",
+    "tags": [
+      {
+        "location": {
+          "line": 4,
+          "column": 1
+        },
+        "name": "@SmokeTest",
+        "id": "17"
+      }
+    ],
+    "elements": [
+      {
+        "keyword": "Scenario",
+        "type": "scenario",
+        "description": "",
+        "name": "SMOKE TEST - CREATING NEW FILTER AND VERIFY IT APPEARANCE AT FILTERS DASHBOARD PAGE",
+        "tags": [
+          {
+            "name": "@SmokeTest",
+            "astNodeId": "17"
+          },
+          {
+            "name": "@logout",
+            "astNodeId": "15"
+          }
+        ],
+        "id": "smoke-test---creating-new-filter-and-verify-it-appearance-at-filters-dashboard-page;smoke-test---creating-new-filter-and-verify-it-appearance-at-filters-dashboard-page",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before",
+            "name": "",
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When",
+            "name": "browser navigated to primary url",
+            "result": {
+              "status": "passed",
+              "duration": 6904000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "\"default\" user logged to reportportal",
+            "result": {
+              "status": "passed",
+              "duration": 4422000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "browser navigated to \"http://localhost:8080/ui/#default_personal/dashboard\"",
+            "result": {
+              "status": "passed",
+              "duration": 5464000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user clicks -Filters- button at left sidebar menue",
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user removes \"smoke_filter\" if exists at filters dashboard page",
+            "result": {
+              "status": "passed",
+              "duration": 7217000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user click -Add filter- button at filters dashboard page",
+            "result": {
+              "status": "passed",
+              "duration": 2176000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user set value \"smoke_filter\" in launch name section at launches dashboard page",
+            "result": {
+              "status": "passed",
+              "duration": 1754000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user clicks \"Save\" button in launch name section at launches dashboard page",
+            "result": {
+              "status": "passed",
+              "duration": 1118000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user set value \"smoke_filter\" in name field on add filter popup page",
+            "result": {
+              "status": "passed",
+              "duration": 1750000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user clicks -Add- button on add filter popup page",
+            "result": {
+              "status": "passed",
+              "duration": 1081000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user clicks -Filters- button at left sidebar menue",
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then",
+            "name": "filter \"smoke_filter\" is present on the filters dashboard page",
+            "result": {
+              "status": "passed",
+              "duration": 543000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After",
+            "name": "",
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          }
+        ]
+      }
+    ],
+    "id": "smoke-test---creating-new-filter-and-verify-it-appearance-at-filters-dashboard-page",
+    "metadata": {
+      "browser": {
+        "name": "chrome",
+        "version": "106.0.5249.91"
+      },
+      "device": "Device name not known",
+      "platform": {
+        "name": "windows",
+        "version": "Version not known"
+      }
+    }
+  }
+]

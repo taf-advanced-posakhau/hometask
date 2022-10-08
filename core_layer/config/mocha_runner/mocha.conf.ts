@@ -1,4 +1,5 @@
 import type { Options } from '@wdio/types'
+const rimraf = require('rimraf');
 
 
 export const config: Options.Testrunner = {
@@ -60,12 +61,38 @@ export const config: Options.Testrunner = {
     
     framework: 'mocha',
     
-    reporters: ['spec'],
-
-  
+    reporters: ['spec',
+        ['mochawesome', {
+            outputDir: 'reports/json/',
+            outputFileFormat: (opts: any) => {
+                return `results.json`
+            }
+        }]
+    ],
+ 
 
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 60000,
+        mochawesomeOpts: {
+            includeScreenshots: true,
+            screenshotUseRelativePath: true
+        },
+    },
+
+    afterTest: async function (test, context, { error, result, duration, passed, retries }) {
+        if (!passed) {
+            await browser.takeScreenshot();
+        }
+    },
+
+    onPrepare() {
+        rimraf.sync(`./Results*`);
+        rimraf.sync(`./reports*`);
+    },
+
+    onComplete: function (exitCode, config, capabilities, results) {
+        const mergeResults = require('wdio-mochawesome-reporter/mergeResults')
+        mergeResults('./reports/json', "results-*");
     },
 }
