@@ -1,6 +1,8 @@
 import type { Options } from '@wdio/types'
+import { yellow } from 'colors';
 const rimraf = require('rimraf');
 
+console.log ( yellow ( `Executing mocha runner. Solution executing in ${process.env.parallel} flows. ` ));
 
 export const config: Options.Testrunner = {
     //
@@ -40,7 +42,7 @@ export const config: Options.Testrunner = {
     maxInstances: 10,
   
     capabilities: [{          
-        maxInstances: 5,        
+        maxInstances: parseInt(process.env.parallel),            
         browserName: 'chrome',
         acceptInsecureCerts: true   
     }],
