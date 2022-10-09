@@ -1,8 +1,9 @@
 import type { Options } from '@wdio/types'
-import { bgBlue } from 'colors';
+import { bgBlue, yellow } from 'colors';
 import { localRunnerConfiguration } from './localRunnerConfiguration'
 import { suitesRunnerConfig } from './suitesRunnerConfiguration'
 
+console.log ( yellow ( `Executing cucumber runner. Solution executing in ${process.env.parallel} flows. ` ));
 
 let stepNumber = 1;
 let startTime;
@@ -57,7 +58,7 @@ export const config: Options.Testrunner = {
     ],   
     maxInstances: 10,  
     capabilities: [{
-        maxInstances: 5,
+        maxInstances: parseInt(process.env.parallel),  
         'goog:chromeOptions': localRunnerConfiguration.googleChromeOptions,
         browserName: 'chrome',        
         acceptInsecureCerts: true     
