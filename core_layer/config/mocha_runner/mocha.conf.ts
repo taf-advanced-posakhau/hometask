@@ -1,8 +1,9 @@
 import type { Options } from '@wdio/types'
 import { yellow } from 'colors';
 const rimraf = require('rimraf');
+import { headlessRunnerConfiguration } from '../headlessRunnerConfiguration'
 
-console.log ( yellow ( `Executing mocha runner. Solution executing in ${process.env.parallel} flows. ` ));
+console.log ( yellow ( `Executing mocha runner. Solution executing in ${process.env.parallel} flows in headless mode. ` ));
 
 export const config: Options.Testrunner = {
     //
@@ -32,7 +33,7 @@ export const config: Options.Testrunner = {
     },
    
     specs: [
-        './test/specs/**/*.ts'
+        'test_layer/mocha_tests/specs/**/*.ts'
     ],
     // Patterns to exclude.
     exclude: [
@@ -44,6 +45,7 @@ export const config: Options.Testrunner = {
     capabilities: [{          
         maxInstances: parseInt(process.env.parallel),            
         browserName: 'chrome',
+        'goog:chromeOptions': headlessRunnerConfiguration.googleChromeOptions,
         acceptInsecureCerts: true   
     }],
     
@@ -95,6 +97,6 @@ export const config: Options.Testrunner = {
 
     onComplete: function (exitCode, config, capabilities, results) {
         const mergeResults = require('wdio-mochawesome-reporter/mergeResults')
-        mergeResults('./reports/json', "results-*");
+        mergeResults('./reports/json/*', "results-*");
     },
 }

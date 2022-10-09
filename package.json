@@ -27,7 +27,7 @@
         "cuc-all": "cross-env parallel=2 npx wdio run wdio.conf.ts --suite main",
         "cuc-smoke": "cross-env parallel=1 npx wdio run core_layer/config/wdio.conf.ts --suite smoke",
         "mocha-tests": "cross-env parallel=3 npx wdio run core_layer/config/mocha_runner/mocha.conf.ts --reporter mochawesome",
-        "report": "marge ./reports/json/results.json --reportTitle MochaReport --reportDir=reports && move ./reports.html ./reports"
+        "mocha-report": "marge ./reports/json/results.json --reportTitle MochaReport --reportDir=reports && move ./reports.html ./reports"
     },
     "dependencies": {
         "colors": "^1.4.0",
