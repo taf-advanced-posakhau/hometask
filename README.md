@@ -10,6 +10,11 @@ The Program participants will have an opportunity to choose the technology stack
 
 <b>SCRIPTS TO RUN : </b>
 
-<b>npm run all</b> - starts run of all features
+<b>npm run cuc-all</b> - starts run of all features from cucumber features
 
-<b>npm run smoke </b> - starts execution of smoke test
+<b>npm run cuc-smoke </b> - starts execution of smoke test - cucumber feature
+
+<b>npm run mocha-tests </b> - starts execution of all specs using mocha test runner 
+
+<b>npm run mocha-report </b> - forms report of results of runs all mocha tests by using mochawesome reporter
+
