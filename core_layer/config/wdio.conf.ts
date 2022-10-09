@@ -99,6 +99,8 @@ export const config: Options.Testrunner = {
     },
  
      onPrepare() {
+        rimraf.sync(`./Results*`);
+        rimraf.sync(`./reports*`);
         rimraf.sync(`${pathToJsonReportsDir}*`);
         rimraf.sync(`${pathToHtmlReportDir}*`);       
         const date = new Date();

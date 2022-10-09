@@ -40,7 +40,7 @@
             "name": "",
             "result": {
               "status": "passed",
-              "duration": 3000000
+              "duration": 2000000
             },
             "line": null,
             "match": {
@@ -53,7 +53,7 @@
             "name": "browser navigated to primary url",
             "result": {
               "status": "passed",
-              "duration": 8127000000
+              "duration": 6904000000
             },
             "line": null,
             "match": {
@@ -66,7 +66,7 @@
             "name": "\"default\" user logged to reportportal",
             "result": {
               "status": "passed",
-              "duration": 4410000000
+              "duration": 4422000000
             },
             "line": null,
             "match": {
@@ -79,7 +79,7 @@
             "name": "browser navigated to \"http://localhost:8080/ui/#default_personal/dashboard\"",
             "result": {
               "status": "passed",
-              "duration": 5477000000
+              "duration": 5464000000
             },
             "line": null,
             "match": {
@@ -92,7 +92,7 @@
             "name": "user clicks -Filters- button at left sidebar menue",
             "result": {
               "status": "passed",
-              "duration": 3000000
+              "duration": 2000000
             },
             "line": null,
             "match": {
@@ -105,7 +105,7 @@
             "name": "user removes \"smoke_filter\" if exists at filters dashboard page",
             "result": {
               "status": "passed",
-              "duration": 7250000000
+              "duration": 7217000000
             },
             "line": null,
             "match": {
@@ -118,7 +118,7 @@
             "name": "user click -Add filter- button at filters dashboard page",
             "result": {
               "status": "passed",
-              "duration": 2148000000
+              "duration": 2176000000
             },
             "line": null,
             "match": {
@@ -131,7 +131,7 @@
             "name": "user set value \"smoke_filter\" in launch name section at launches dashboard page",
             "result": {
               "status": "passed",
-              "duration": 1719000000
+              "duration": 1754000000
             },
             "line": null,
             "match": {
@@ -144,7 +144,7 @@
             "name": "user clicks \"Save\" button in launch name section at launches dashboard page",
             "result": {
               "status": "passed",
-              "duration": 1132000000
+              "duration": 1118000000
             },
             "line": null,
             "match": {
@@ -157,7 +157,7 @@
             "name": "user set value \"smoke_filter\" in name field on add filter popup page",
             "result": {
               "status": "passed",
-              "duration": 1721000000
+              "duration": 1750000000
             },
             "line": null,
             "match": {
@@ -170,7 +170,7 @@
             "name": "user clicks -Add- button on add filter popup page",
             "result": {
               "status": "passed",
-              "duration": 1102000000
+              "duration": 1081000000
             },
             "line": null,
             "match": {
@@ -183,7 +183,7 @@
             "name": "user clicks -Filters- button at left sidebar menue",
             "result": {
               "status": "passed",
-              "duration": 9000000
+              "duration": 2000000
             },
             "line": null,
             "match": {
@@ -196,7 +196,7 @@
             "name": "filter \"smoke_filter\" is present on the filters dashboard page",
             "result": {
               "status": "passed",
-              "duration": 547000000
+              "duration": 543000000
             },
             "line": null,
             "match": {

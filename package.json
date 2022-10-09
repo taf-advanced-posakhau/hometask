@@ -5,28 +5,34 @@
     "private": true,
     "keywords": [],
     "author": "",
-    "license": "ISC",    
+    "license": "ISC",
     "devDependencies": {
-        "@wdio/cli": "^7.25.0",
+        "@wdio/cli": "^7.25.1",
         "@wdio/cucumber-framework": "^7.25.0",
-        "@wdio/local-runner": "^7.25.0",
-        "@wdio/spec-reporter": "^7.25.0",
+        "@wdio/local-runner": "^7.25.1",
+        "@wdio/mocha-framework": "^7.25.1",
+        "@wdio/spec-reporter": "^7.25.1",
         "chromedriver": "^106.0.1",
+        "cucumber-html-reporter": "^5.5.0",
+        "cucumber-junit-formatter": "^0.2.2",
+        "multiple-cucumber-html-reporter": "^1.19.0",
         "ts-node": "^10.9.1",
         "typescript": "^4.8.4",
         "wdio-chromedriver-service": "^8.0.0",
-        "cucumber-html-reporter": "^5.5.0",
-        "cucumber-junit-formatter": "^0.2.2",
         "wdio-cucumberjs-json-reporter": "^4.4.1",
-        "multiple-cucumber-html-reporter": "^1.19.0"
+        "mochawesome-report-generator": "^3.1.5",
+        "wdio-mochawesome-reporter": "^4.0.0"
+
     },
     "scripts": {
-        "all": "npx wdio run wdio.conf.ts --suite main",
-        "smoke": "npx wdio run core_layer/config/wdio.conf.ts --suite smoke"
+        "cuc-all": "npx wdio run wdio.conf.ts --suite main",
+        "cuc-smoke": "npx wdio run core_layer/config/wdio.conf.ts --suite smoke",
+        "mocha-tests": "npx wdio run core_layer/config/mocha_runner/mocha.conf.ts --reporter mochawesome",
+        "report": "marge ./reports/json/results.json --reportTitle MochaReport --reportDir=reports && move ./reports.html ./reports"     
     },
     "dependencies": {
         "colors": "^1.4.0",
-        "rimraf": "^3.0.2",
-        "cucumber-pretty": "^6.0.1"
+        "cucumber-pretty": "^6.0.1",       
+        "rimraf": "^3.0.2"
     }
 }
