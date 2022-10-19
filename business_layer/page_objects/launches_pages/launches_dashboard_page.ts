@@ -1,5 +1,7 @@
+import { DataTable } from "@wdio/cucumber-framework";
 import { yellow } from "colors";
 import { _ecx, _skx } from "../../../core_layer/utilities/aliases"
+import { assertEqualValues } from "../../../core_layer/utilities/assertions";
 
 export class LaunchesDashboardPage {
     public setFilterName = async ( value : string ) : Promise <void> => {
@@ -15,6 +17,14 @@ export class LaunchesDashboardPage {
     } 
 
     public getLaunchesTableHeaderElement  = async ( value : string ) => {
-        return $(`//span[text()='${value}']`);
+        return await $(`//span[text()='${value}']`);
+    }
+
+    public isTableHeaderElementDisplayed = async ( table : DataTable ) : Promise <void> => {      
+        let data = table.raw();
+        for (const value of data) {         
+            let currentElement = await $(`//span[text()='${value}']`);
+            await assertEqualValues (  ( await currentElement.isDisplayed() ) , true)
+        };
     }
 }

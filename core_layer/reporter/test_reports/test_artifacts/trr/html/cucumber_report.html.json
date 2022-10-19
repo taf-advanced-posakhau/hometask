@@ -3,17 +3,17 @@
     "keyword": "Feature",
     "type": "feature",
     "description": "",
-    "line": 5,
-    "name": "SMOKE TEST - CREATING NEW FILTER AND VERIFY IT APPEARANCE AT FILTERS DASHBOARD PAGE",
-    "uri": "D:\\SENIOR TEST AUTOMATION LAB\\TAF ADVANCED PROGRAM\\REPO\\hometask\\test_layer\\features\\smoke_test.feature",
+    "line": 3,
+    "name": "Hometask 04 - BDD. Verification of the presence of the table headers elements at the launches page",
+    "uri": "D:\\SENIOR TEST AUTOMATION LAB\\TAF ADVANCED PROGRAM\\REPO\\hometask\\test_layer\\features\\ht-04-bdd\\ht-04-bdd.feature",
     "tags": [
       {
         "location": {
-          "line": 4,
+          "line": 2,
           "column": 1
         },
-        "name": "@SmokeTest",
-        "id": "17"
+        "name": "@Hometask.Module04-BDD",
+        "id": "20"
       }
     ],
     "elements": [
@@ -21,18 +21,14 @@
         "keyword": "Scenario",
         "type": "scenario",
         "description": "",
-        "name": "SMOKE TEST - CREATING NEW FILTER AND VERIFY IT APPEARANCE AT FILTERS DASHBOARD PAGE",
+        "name": "Hometask 04 - BDD. Verification of the presence of the table headers elements at the launches page",
         "tags": [
           {
-            "name": "@SmokeTest",
-            "astNodeId": "17"
-          },
-          {
-            "name": "@logout",
-            "astNodeId": "15"
+            "name": "@Hometask.Module04-BDD",
+            "astNodeId": "20"
           }
         ],
-        "id": "smoke-test---creating-new-filter-and-verify-it-appearance-at-filters-dashboard-page;smoke-test---creating-new-filter-and-verify-it-appearance-at-filters-dashboard-page",
+        "id": "hometask-04---bdd.-verification-of-the-presence-of-the-table-headers-elements-at-the-launches-page;hometask-04---bdd.-verification-of-the-presence-of-the-table-headers-elements-at-the-launches-page",
         "steps": [
           {
             "arguments": [],
@@ -40,7 +36,7 @@
             "name": "",
             "result": {
               "status": "passed",
-              "duration": 2000000
+              "duration": 4000000
             },
             "line": null,
             "match": {
@@ -49,11 +45,11 @@
           },
           {
             "arguments": [],
-            "keyword": "When",
+            "keyword": "Given",
             "name": "browser navigated to primary url",
             "result": {
               "status": "passed",
-              "duration": 6904000000
+              "duration": 7655000000
             },
             "line": null,
             "match": {
@@ -66,7 +62,7 @@
             "name": "\"default\" user logged to reportportal",
             "result": {
               "status": "passed",
-              "duration": 4422000000
+              "duration": 8417000000
             },
             "line": null,
             "match": {
@@ -79,7 +75,7 @@
             "name": "browser navigated to \"http://localhost:8080/ui/#default_personal/dashboard\"",
             "result": {
               "status": "passed",
-              "duration": 5464000000
+              "duration": 7500000000
             },
             "line": null,
             "match": {
@@ -89,10 +85,10 @@
           {
             "arguments": [],
             "keyword": "And",
-            "name": "user clicks -Filters- button at left sidebar menue",
+            "name": "user clicks -Launches- button at left sidebar menue",
             "result": {
               "status": "passed",
-              "duration": 2000000
+              "duration": 3000000
             },
             "line": null,
             "match": {
@@ -102,10 +98,10 @@
           {
             "arguments": [],
             "keyword": "And",
-            "name": "user removes \"smoke_filter\" if exists at filters dashboard page",
+            "name": "pause \"5\" seconds",
             "result": {
               "status": "passed",
-              "duration": 7217000000
+              "duration": 5011000000
             },
             "line": null,
             "match": {
@@ -113,90 +109,62 @@
             }
           },
           {
-            "arguments": [],
-            "keyword": "And",
-            "name": "user click -Add filter- button at filters dashboard page",
-            "result": {
-              "status": "passed",
-              "duration": 2176000000
-            },
-            "line": null,
-            "match": {
-              "location": "can not be determined with webdriver.io"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And",
-            "name": "user set value \"smoke_filter\" in launch name section at launches dashboard page",
-            "result": {
-              "status": "passed",
-              "duration": 1754000000
-            },
-            "line": null,
-            "match": {
-              "location": "can not be determined with webdriver.io"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And",
-            "name": "user clicks \"Save\" button in launch name section at launches dashboard page",
-            "result": {
-              "status": "passed",
-              "duration": 1118000000
-            },
-            "line": null,
-            "match": {
-              "location": "can not be determined with webdriver.io"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And",
-            "name": "user set value \"smoke_filter\" in name field on add filter popup page",
-            "result": {
-              "status": "passed",
-              "duration": 1750000000
-            },
-            "line": null,
-            "match": {
-              "location": "can not be determined with webdriver.io"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And",
-            "name": "user clicks -Add- button on add filter popup page",
-            "result": {
-              "status": "passed",
-              "duration": 1081000000
-            },
-            "line": null,
-            "match": {
-              "location": "can not be determined with webdriver.io"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And",
-            "name": "user clicks -Filters- button at left sidebar menue",
-            "result": {
-              "status": "passed",
-              "duration": 2000000
-            },
-            "line": null,
-            "match": {
-              "location": "can not be determined with webdriver.io"
-            }
-          },
-          {
-            "arguments": [],
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "start time"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "total"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "passed"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "failed"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "skipped"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "product bug"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "auto bug"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "system issue"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "to investigate"
+                    ]
+                  }
+                ]
+              }
+            ],
             "keyword": "Then",
-            "name": "filter \"smoke_filter\" is present on the filters dashboard page",
+            "name": "column name header element is displayed in header table at launches dashboard page",
             "result": {
               "status": "passed",
-              "duration": 543000000
+              "duration": 218000000
             },
             "line": null,
             "match": {
@@ -219,11 +187,11 @@
         ]
       }
     ],
-    "id": "smoke-test---creating-new-filter-and-verify-it-appearance-at-filters-dashboard-page",
+    "id": "hometask-04---bdd.-verification-of-the-presence-of-the-table-headers-elements-at-the-launches-page",
     "metadata": {
       "browser": {
         "name": "chrome",
-        "version": "106.0.5249.91"
+        "version": "106.0.5249.119"
       },
       "device": "Device name not known",
       "platform": {
