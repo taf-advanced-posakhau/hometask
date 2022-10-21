@@ -18,3 +18,5 @@ The Program participants will have an opportunity to choose the technology stack
 
 <b>npm run mocha-report </b> - forms report of results of runs all mocha tests by using mochawesome reporter
 
+<b>npm run ht4 </b> - starts execution of the hometask for module 04-BDD. Executing in headless mode.
+
