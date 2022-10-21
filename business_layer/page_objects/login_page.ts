@@ -17,6 +17,10 @@ export class LoginPage {
         }    
     }
 
+    public loginUserAsObject = async ( user ) : Promise <void> => {
+        await this.performLogin ( user );
+    }
+
     private performLogin = async ( user : any) : Promise <void> => {        
         await this.setUsername ( user.username ); 
         await this.setPassword ( user.password );

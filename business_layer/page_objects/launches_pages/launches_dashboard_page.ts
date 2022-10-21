@@ -27,4 +27,18 @@ export class LaunchesDashboardPage {
             await assertEqualValues (  ( await currentElement.isDisplayed() ) , true)
         };
     }
+
+    public verifyElementsPresence  = async ( arrayOfValues : any ) => {
+        for ( let i=0;i<await arrayOfValues.length;++i ) {
+            console.log ( `VERIFYING PRESENCE OF THE ELEMENT ${ yellow ( arrayOfValues [i])} .... ` );     
+            await assertEqualValues ( await ( await this.getLaunchesTableHeaderElement( arrayOfValues[i]) ).isDisplayed()  , true );        
+        } 
+    }
+    
+    public verifyAmountOfRunResults  = async ( value : number ) => {
+        let amountOfRunsElementsContainer = await $$ ( `//span[text()='Demo Api Tests']` );
+        let amountOfRuns : number = amountOfRunsElementsContainer.length;
+        console.log (`Amount of displayed test runs on launches dashboard page - ${ yellow ( `${ amountOfRuns } `)}`);
+        await assertEqualValues ( amountOfRuns , value );        
+    } 
 }
