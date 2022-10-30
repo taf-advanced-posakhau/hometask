@@ -20,3 +20,5 @@ The Program participants will have an opportunity to choose the technology stack
 
 <b>npm run ht4 </b> - starts execution of the hometask for module 04-BDD. Executing in headless mode.
 
+<b> Report portal instance up: </b> docker-compose -p reportportal up -d --force-recreate
+
