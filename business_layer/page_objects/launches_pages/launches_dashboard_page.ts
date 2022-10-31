@@ -1,5 +1,7 @@
+import { DataTable } from "@wdio/cucumber-framework";
 import { yellow } from "colors";
 import { _ecx, _skx } from "../../../core_layer/utilities/aliases"
+import { assertEqualValues } from "../../../core_layer/utilities/assertions";
 
 export class LaunchesDashboardPage {
     public setFilterName = async ( value : string ) : Promise <void> => {
@@ -15,6 +17,28 @@ export class LaunchesDashboardPage {
     } 
 
     public getLaunchesTableHeaderElement  = async ( value : string ) => {
-        return $(`//span[text()='${value}']`);
+        return await $(`//span[text()='${value}']`);
     }
+
+    public isTableHeaderElementDisplayed = async ( table : DataTable ) : Promise <void> => {      
+        let data = table.raw();
+        for (const value of data) {         
+            let currentElement = await $(`//span[text()='${value}']`);
+            await assertEqualValues (  ( await currentElement.isDisplayed() ) , true)
+        };
+    }
+
+    public verifyElementsPresence  = async ( arrayOfValues : any ) => {
+        for ( let i=0;i<await arrayOfValues.length;++i ) {
+            console.log ( `VERIFYING PRESENCE OF THE ELEMENT ${ yellow ( arrayOfValues [i])} .... ` );     
+            await assertEqualValues ( await ( await this.getLaunchesTableHeaderElement( arrayOfValues[i]) ).isDisplayed()  , true );        
+        } 
+    }
+    
+    public verifyAmountOfRunResults  = async ( value : number ) => {
+        let amountOfRunsElementsContainer = await $$ ( `//span[text()='Demo Api Tests']` );
+        let amountOfRuns : number = amountOfRunsElementsContainer.length;
+        console.log (`Amount of displayed test runs on launches dashboard page - ${ yellow ( `${ amountOfRuns } `)}`);
+        await assertEqualValues ( amountOfRuns , value );        
+    } 
 }

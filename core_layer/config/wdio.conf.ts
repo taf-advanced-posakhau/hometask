@@ -1,6 +1,7 @@
 import type { Options } from '@wdio/types'
 import { bgBlue, yellow } from 'colors';
 import { localRunnerConfiguration } from './localRunnerConfiguration'
+import { headlessRunnerConfiguration } from './headlessRunnerConfiguration'
 import { suitesRunnerConfig } from './suitesRunnerConfiguration'
 
 console.log ( yellow ( `Executing cucumber runner. Solution executing in ${process.env.parallel} flows. ` ));
@@ -39,6 +40,14 @@ let options = {
     ]
 };
 
+// RUN TYPE DETERMINATION:
+let environmentRunnerOptions = null;
+if (process.env.runType == 'headless') { 
+    environmentRunnerOptions = headlessRunnerConfiguration;    
+} else {
+    environmentRunnerOptions = localRunnerConfiguration;    
+}
+
 export const config: Options.Testrunner = {
 
     autoCompileOpts: {
@@ -59,7 +68,7 @@ export const config: Options.Testrunner = {
     maxInstances: 10,  
     capabilities: [{
         maxInstances: parseInt(process.env.parallel),  
-        'goog:chromeOptions': localRunnerConfiguration.googleChromeOptions,
+        'goog:chromeOptions': environmentRunnerOptions.googleChromeOptions,
         browserName: 'chrome',        
         acceptInsecureCerts: true     
     }],   

@@ -103,3 +103,5 @@ dist
 
 # TernJS port file
 .tern-port
+core_layer/reporter/test_reports/
+/core_layer/reporter/test_reports/

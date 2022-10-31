@@ -3,17 +3,17 @@
     "keyword": "Feature",
     "type": "feature",
     "description": "",
-    "line": 5,
-    "name": "SMOKE TEST - CREATING NEW FILTER AND VERIFY IT APPEARANCE AT FILTERS DASHBOARD PAGE",
-    "uri": "D:\\SENIOR TEST AUTOMATION LAB\\TAF ADVANCED PROGRAM\\REPO\\hometask\\test_layer\\features\\smoke_test.feature",
+    "line": 3,
+    "name": "Hometask 04 - BDD. Verification of the amount of run results at the launches dashboard page - 03",
+    "uri": "D:\\SENIOR TEST AUTOMATION LAB\\TAF ADVANCED PROGRAM\\REPO\\hometask\\test_layer\\features\\ht-04-bdd\\ht-04-bdd-03.feature",
     "tags": [
       {
         "location": {
-          "line": 4,
+          "line": 2,
           "column": 1
         },
-        "name": "@SmokeTest",
-        "id": "17"
+        "name": "@Hometask.Module04-BDD",
+        "id": "11"
       }
     ],
     "elements": [
@@ -21,18 +21,14 @@
         "keyword": "Scenario",
         "type": "scenario",
         "description": "",
-        "name": "SMOKE TEST - CREATING NEW FILTER AND VERIFY IT APPEARANCE AT FILTERS DASHBOARD PAGE",
+        "name": "Hometask 04 - BDD. Verification of the amount of run results at the launches dashboard page - 03",
         "tags": [
           {
-            "name": "@SmokeTest",
-            "astNodeId": "17"
-          },
-          {
-            "name": "@logout",
-            "astNodeId": "15"
+            "name": "@Hometask.Module04-BDD",
+            "astNodeId": "11"
           }
         ],
-        "id": "smoke-test---creating-new-filter-and-verify-it-appearance-at-filters-dashboard-page;smoke-test---creating-new-filter-and-verify-it-appearance-at-filters-dashboard-page",
+        "id": "hometask-04---bdd.-verification-of-the-amount-of-run-results-at-the-launches-dashboard-page---03;hometask-04---bdd.-verification-of-the-amount-of-run-results-at-the-launches-dashboard-page---03",
         "steps": [
           {
             "arguments": [],
@@ -49,11 +45,11 @@
           },
           {
             "arguments": [],
-            "keyword": "When",
+            "keyword": "Given",
             "name": "browser navigated to primary url",
             "result": {
               "status": "passed",
-              "duration": 6904000000
+              "duration": 6912000000
             },
             "line": null,
             "match": {
@@ -63,10 +59,10 @@
           {
             "arguments": [],
             "keyword": "And",
-            "name": "\"default\" user logged to reportportal",
+            "name": "user \"default\" logged in to reportportal",
             "result": {
               "status": "passed",
-              "duration": 4422000000
+              "duration": 8411000000
             },
             "line": null,
             "match": {
@@ -79,7 +75,7 @@
             "name": "browser navigated to \"http://localhost:8080/ui/#default_personal/dashboard\"",
             "result": {
               "status": "passed",
-              "duration": 5464000000
+              "duration": 7439000000
             },
             "line": null,
             "match": {
@@ -89,10 +85,10 @@
           {
             "arguments": [],
             "keyword": "And",
-            "name": "user clicks -Filters- button at left sidebar menue",
+            "name": "user clicks -Launches- button at left sidebar menue",
             "result": {
               "status": "passed",
-              "duration": 2000000
+              "duration": 11000000
             },
             "line": null,
             "match": {
@@ -102,88 +98,10 @@
           {
             "arguments": [],
             "keyword": "And",
-            "name": "user removes \"smoke_filter\" if exists at filters dashboard page",
+            "name": "pause \"5\" seconds",
             "result": {
               "status": "passed",
-              "duration": 7217000000
-            },
-            "line": null,
-            "match": {
-              "location": "can not be determined with webdriver.io"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And",
-            "name": "user click -Add filter- button at filters dashboard page",
-            "result": {
-              "status": "passed",
-              "duration": 2176000000
-            },
-            "line": null,
-            "match": {
-              "location": "can not be determined with webdriver.io"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And",
-            "name": "user set value \"smoke_filter\" in launch name section at launches dashboard page",
-            "result": {
-              "status": "passed",
-              "duration": 1754000000
-            },
-            "line": null,
-            "match": {
-              "location": "can not be determined with webdriver.io"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And",
-            "name": "user clicks \"Save\" button in launch name section at launches dashboard page",
-            "result": {
-              "status": "passed",
-              "duration": 1118000000
-            },
-            "line": null,
-            "match": {
-              "location": "can not be determined with webdriver.io"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And",
-            "name": "user set value \"smoke_filter\" in name field on add filter popup page",
-            "result": {
-              "status": "passed",
-              "duration": 1750000000
-            },
-            "line": null,
-            "match": {
-              "location": "can not be determined with webdriver.io"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And",
-            "name": "user clicks -Add- button on add filter popup page",
-            "result": {
-              "status": "passed",
-              "duration": 1081000000
-            },
-            "line": null,
-            "match": {
-              "location": "can not be determined with webdriver.io"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And",
-            "name": "user clicks -Filters- button at left sidebar menue",
-            "result": {
-              "status": "passed",
-              "duration": 2000000
+              "duration": 5010000000
             },
             "line": null,
             "match": {
@@ -193,10 +111,10 @@
           {
             "arguments": [],
             "keyword": "Then",
-            "name": "filter \"smoke_filter\" is present on the filters dashboard page",
+            "name": "verify that launches dashboard page should represent \"10\" run results",
             "result": {
               "status": "passed",
-              "duration": 543000000
+              "duration": 39000000
             },
             "line": null,
             "match": {
@@ -219,11 +137,389 @@
         ]
       }
     ],
-    "id": "smoke-test---creating-new-filter-and-verify-it-appearance-at-filters-dashboard-page",
+    "id": "hometask-04---bdd.-verification-of-the-amount-of-run-results-at-the-launches-dashboard-page---03",
     "metadata": {
       "browser": {
         "name": "chrome",
-        "version": "106.0.5249.91"
+        "version": "106.0.5249.119"
+      },
+      "device": "Device name not known",
+      "platform": {
+        "name": "windows",
+        "version": "Version not known"
+      }
+    }
+  },
+  {
+    "keyword": "Feature",
+    "type": "feature",
+    "description": "",
+    "line": 3,
+    "name": "Hometask 04 - BDD. Verification of the presence of the table headers elements at the launches page - 01",
+    "uri": "D:\\SENIOR TEST AUTOMATION LAB\\TAF ADVANCED PROGRAM\\REPO\\hometask\\test_layer\\features\\ht-04-bdd\\ht-04-bdd-01.feature",
+    "tags": [
+      {
+        "location": {
+          "line": 2,
+          "column": 1
+        },
+        "name": "@Hometask.Module04-BDD",
+        "id": "17"
+      }
+    ],
+    "elements": [
+      {
+        "keyword": "Scenario",
+        "type": "scenario",
+        "description": "",
+        "name": "Hometask 04 - BDD. Verification of the presence of the table headers elements at the launches page - 01",
+        "tags": [
+          {
+            "name": "@Hometask.Module04-BDD",
+            "astNodeId": "17"
+          }
+        ],
+        "id": "hometask-04---bdd.-verification-of-the-presence-of-the-table-headers-elements-at-the-launches-page---01;hometask-04---bdd.-verification-of-the-presence-of-the-table-headers-elements-at-the-launches-page---01",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before",
+            "name": "",
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given",
+            "name": "browser navigated to primary url",
+            "result": {
+              "status": "passed",
+              "duration": 7303000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user \"default\" logged in to reportportal",
+            "result": {
+              "status": "passed",
+              "duration": 8481000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "browser navigated to \"http://localhost:8080/ui/#default_personal/dashboard\"",
+            "result": {
+              "status": "passed",
+              "duration": 7078000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user clicks -Launches- button at left sidebar menue",
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "pause \"5\" seconds",
+            "result": {
+              "status": "passed",
+              "duration": 5008000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "start time"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "total"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "passed"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "failed"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "skipped"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "product bug"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "auto bug"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "system issue"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "to investigate"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Then",
+            "name": "column name header element is displayed in header table at launches dashboard page",
+            "result": {
+              "status": "passed",
+              "duration": 191000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After",
+            "name": "",
+            "result": {
+              "status": "passed",
+              "duration": 0
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          }
+        ]
+      }
+    ],
+    "id": "hometask-04---bdd.-verification-of-the-presence-of-the-table-headers-elements-at-the-launches-page---01",
+    "metadata": {
+      "browser": {
+        "name": "chrome",
+        "version": "106.0.5249.119"
+      },
+      "device": "Device name not known",
+      "platform": {
+        "name": "windows",
+        "version": "Version not known"
+      }
+    }
+  },
+  {
+    "keyword": "Feature",
+    "type": "feature",
+    "description": "",
+    "line": 3,
+    "name": "Hometask 04 - BDD. Verification of the presence of the table headers elements inside suite page - 02",
+    "uri": "D:\\SENIOR TEST AUTOMATION LAB\\TAF ADVANCED PROGRAM\\REPO\\hometask\\test_layer\\features\\ht-04-bdd\\ht-04-bdd-02.feature",
+    "tags": [
+      {
+        "location": {
+          "line": 2,
+          "column": 1
+        },
+        "name": "@Hometask.Module04-BDD",
+        "id": "10"
+      }
+    ],
+    "elements": [
+      {
+        "keyword": "Scenario",
+        "type": "scenario",
+        "description": "",
+        "name": "Hometask 04 - BDD. Verification of the presence of the table headers elements inside suite page - 02",
+        "tags": [
+          {
+            "name": "@Hometask.Module04-BDD",
+            "astNodeId": "10"
+          }
+        ],
+        "id": "hometask-04---bdd.-verification-of-the-presence-of-the-table-headers-elements-inside-suite-page---02;hometask-04---bdd.-verification-of-the-presence-of-the-table-headers-elements-inside-suite-page---02",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before",
+            "name": "",
+            "result": {
+              "status": "passed",
+              "duration": 4000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given",
+            "name": "browser navigated to primary url",
+            "result": {
+              "status": "passed",
+              "duration": 8585000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user \"default\" logged in to reportportal",
+            "result": {
+              "status": "passed",
+              "duration": 8427000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "browser navigated to \"http://localhost:8080/ui/#default_personal/dashboard\"",
+            "result": {
+              "status": "passed",
+              "duration": 7092000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user clicks -Launches- button at left sidebar menue",
+            "result": {
+              "status": "passed",
+              "duration": 8000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "pause \"5\" seconds",
+            "result": {
+              "status": "passed",
+              "duration": 5009000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "user clicks test suite with number \"10\" at launches dashboard page",
+            "result": {
+              "status": "passed",
+              "duration": 5111000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And",
+            "name": "pause \"5\" seconds",
+            "result": {
+              "status": "passed",
+              "duration": 5010000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then",
+            "name": "headers table elements such as \"start time,total,passed,failed,skipped,product bug,auto bug,system issue,to investigate\" presents on test suite page",
+            "result": {
+              "status": "passed",
+              "duration": 248000000
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After",
+            "name": "",
+            "result": {
+              "status": "passed",
+              "duration": 0
+            },
+            "line": null,
+            "match": {
+              "location": "can not be determined with webdriver.io"
+            }
+          }
+        ]
+      }
+    ],
+    "id": "hometask-04---bdd.-verification-of-the-presence-of-the-table-headers-elements-inside-suite-page---02",
+    "metadata": {
+      "browser": {
+        "name": "chrome",
+        "version": "106.0.5249.119"
       },
       "device": "Device name not known",
       "platform": {

@@ -24,7 +24,7 @@ export const waitForElementAndClickByXpath = async (value: string): Promise<void
     //await browser.pause(INTERACTION_TIMEOUT * 2);
     await webElement.waitForDisplayed({ timeout: 15 * 1000 })
     await webElement.click();
-    await browser.pause(INTERACTION_TIMEOUT);
+    await browser.pause(5*INTERACTION_TIMEOUT);
 }
 
 

@@ -16,5 +16,5 @@ Then(/^pause (.*) seconds$/, async (seconds: string) => {
 
 When(/^browser navigated to "(.*)"$/, async ( value : string ) => {
     await browser.url( value );
-    await browser.pause(5 * 1000);
+    await browser.pause(7 * 1000);
 });

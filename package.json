@@ -26,6 +26,8 @@
     "scripts": {
         "cuc-all": "cross-env parallel=2 npx wdio run wdio.conf.ts --suite main",
         "cuc-smoke": "cross-env parallel=1 npx wdio run core_layer/config/wdio.conf.ts --suite smoke",
+        "ht4": "cross-env parallel=3 runType=headless npx wdio run core_layer/config/wdio.conf.ts --suite hometask04",
+
         "mocha-tests": "cross-env parallel=3 npx wdio run core_layer/config/mocha_runner/mocha.conf.ts --reporter mochawesome",
         "mocha-report": "marge ./reports/json/results.json --reportTitle MochaReport --reportDir=reports && move ./reports.html ./reports"
     },
