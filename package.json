@@ -27,14 +27,16 @@
         "cuc-all": "cross-env parallel=2 npx wdio run wdio.conf.ts --suite main",
         "cuc-smoke": "cross-env parallel=1 npx wdio run core_layer/config/wdio.conf.ts --suite smoke",
         "ht4": "cross-env parallel=3 runType=headless npx wdio run core_layer/config/wdio.conf.ts --suite hometask04",
-
         "mocha-tests": "cross-env parallel=3 npx wdio run core_layer/config/mocha_runner/mocha.conf.ts --reporter mochawesome",
+        "mocha-api": "cross-env parallel=3 suite=api npx wdio run core_layer/config/mocha_runner/mocha.conf.ts --reporter mochawesome",
         "mocha-report": "marge ./reports/json/results.json --reportTitle MochaReport --reportDir=reports && move ./reports.html ./reports"
     },
     "dependencies": {
         "colors": "^1.4.0",
         "cross-env": "^7.0.3",
         "cucumber-pretty": "^6.0.1",
+        "qs": "^6.11.0",
+        "random-words": "^1.2.0",
         "rimraf": "^3.0.2"
     }
 }

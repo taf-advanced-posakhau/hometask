@@ -5,6 +5,11 @@ import { headlessRunnerConfiguration } from '../headlessRunnerConfiguration'
 
 console.log ( yellow ( `Executing mocha runner. Solution executing in ${process.env.parallel} flows in headless mode. ` ));
 
+let executePath = `test_layer/mocha_tests/specs/**/*.ts`;
+if (process.env.suite == 'api') {
+    executePath = `test_layer/mocha_tests/api/**/*.ts`
+}
+
 export const config: Options.Testrunner = {
     //
     // ====================
@@ -33,7 +38,7 @@ export const config: Options.Testrunner = {
     },
    
     specs: [
-        'test_layer/mocha_tests/specs/**/*.ts'
+        executePath
     ],
     // Patterns to exclude.
     exclude: [
