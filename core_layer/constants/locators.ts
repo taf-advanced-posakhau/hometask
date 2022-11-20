@@ -6,7 +6,11 @@ export const REPORTPORTAL_LOCATORS = {
     },
     dashboard: {
         draggableElement: `//div[text()='draggable_468']/parent::div/parent::div`,
-        targetElement: `//div[@class='react-grid-layout']`
-    }
+        targetElement: `//div[@class='react-grid-layout']`,
+        resizeableWidgetPointer: `//div[text()='draggable_468']/parent::div/parent::div/parent::div/parent::div/parent::div/following-sibling::span`,
+        movableWidget: `//div[text()='api_filter_401']/parent::div/parent::div/parent::div/parent::div/parent::div/parent::div`,
+        sizeableContentElement: `//div[contains(@class,'widget-wrapper')]`
+    },
+    
 }
 
