@@ -31,7 +31,7 @@
     "mocha-tests": "cross-env parallel=3 npx wdio run core_layer/config/mocha_runner/mocha.conf.ts --reporter mochawesome",
     "mocha-api": "cross-env parallel=3 suite=api npx wdio run core_layer/config/mocha_runner/mocha.conf.ts --reporter mochawesome",
     "mocha-report": "marge ./reports/json/results.json --reportTitle MochaReport --reportDir=reports && move ./reports.html ./reports",
-    "pt":"npx playwright test --headed --workers=1"
+    "plw":"npx playwright test --headed --workers=1"
   },
   "dependencies": {
     "colors": "^1.4.0",
