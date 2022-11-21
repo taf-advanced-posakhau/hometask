@@ -1,9 +1,17 @@
 import { test, expect } from '@playwright/test';
 import { REPORTPORTAL_LOCATORS } from '../../../core_layer/constants/locators';
 import { INTERACTION_TIMEOUT } from '../../../core_layer/constants/constants';
+import { yellow } from 'colors';
 
 test.use({ viewport: { width: 1920, height: 1080 } });
 test('selected size of the draggable widget is saved after resizing', async ({ page }) => {
+
+  page.on(`request`, req => console.log(yellow(`request interception stream >>>>${req.method} ${req.response} ${req.postDataBuffer} ${req.url} ${req.headerValue} ${req.postData} `)));
+
+  await page.route('**/*',route => {
+    console.log(route.request().url())
+    return route.continue();
+  })
 
   let draggableElementWidthBeforeDrag;
   let draggableElementHeightBeforeDrag;
