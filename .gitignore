@@ -105,3 +105,6 @@ dist
 .tern-port
 core_layer/reporter/test_reports/
 /core_layer/reporter/test_reports/
+/test-results/
+/playwright-report/
+/playwright/.cache/
