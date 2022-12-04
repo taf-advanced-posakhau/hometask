@@ -100,8 +100,8 @@ export const config: Options.Testrunner = {
         rimraf.sync(`./reports*`);
     },
 
-    onComplete: function (exitCode, config, capabilities, results) {
-        const mergeResults = require('wdio-mochawesome-reporter/mergeResults')
-        mergeResults('./reports/json/*', "results-*");
-    },
+    // onComplete: function (exitCode, config, capabilities, results) {
+    //     const mergeResults = require('wdio-mochawesome-reporter/mergeResults')
+    //     mergeResults('./reports/json/*', "results-*");
+    // },
 }
