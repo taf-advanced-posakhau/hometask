@@ -20,5 +20,11 @@ The Program participants will have an opportunity to choose the technology stack
 
 <b>npm run ht4 </b> - starts execution of the hometask for module 04-BDD. Executing in headless mode.
 
+<b>npm run ht6 </b> - starts execution of the hometask for module 06-UI. WebdriverIO - in normal non-headless mode.
+
+<b>npm run plw </b> - starts execution of the hometask for module 06-UI. Executing UI tests with Playwright tool.
+
+<b>npm run mocha-api </b> - starts execution of api tests with mocha runner
+
 <b> docker-compose -p reportportal up -d --force-recreate </b> - Report portal instance up
 
