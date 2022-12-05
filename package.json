@@ -13,7 +13,7 @@
     "@wdio/local-runner": "^7.25.1",
     "@wdio/mocha-framework": "^7.25.1",
     "@wdio/spec-reporter": "^7.25.1",
-    "chromedriver": "^104.0.0",
+    "chromedriver": "^106.0.1",
     "cucumber-html-reporter": "^5.5.0",
     "cucumber-junit-formatter": "^0.2.2",
     "mochawesome-report-generator": "^3.1.5",
