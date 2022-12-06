@@ -29,12 +29,13 @@
     "cuc-smoke": "cross-env parallel=1 npx wdio run core_layer/config/wdio.conf.ts --suite smoke",
     "ht4": "cross-env parallel=3 runType=headless npx wdio run core_layer/config/wdio.conf.ts --suite hometask04",
     "ht6": "cross-env parallel=3 runType=headless npx wdio run core_layer/config/wdio.conf.ts --suite hometask06",
-    "drag-n-drop cucmber": "cross-env parallel=2 npx wdio run core_layer/config/wdio.conf.ts --suite hometask06",
+    "drag-n-drop cucumber": "cross-env parallel=2 npx wdio run core_layer/config/wdio.conf.ts --suite hometask06",
     "mocha-tests": "cross-env parallel=3 npx wdio run core_layer/config/mocha_runner/mocha.conf.ts --reporter mochawesome",
     "mocha-api": "cross-env parallel=3 suite=api npx wdio run core_layer/config/mocha_runner/mocha.conf.ts --reporter mochawesome",    
     "mocha-report": "marge ./reports/json/results.json --reportTitle MochaReport --reportDir=reports && move ./reports.html ./reports",
     "plw":"npx playwright test --headed --workers=1",
-    "docker-test-api":"docker build -t docker-api:latest ."
+    "docker-test-api":"docker build -t docker-api:latest .",
+    "docker-wdio":"docker build -t docker-ui-wdio:latest ."
   },
   "dependencies": {
     "colors": "^1.4.0",
