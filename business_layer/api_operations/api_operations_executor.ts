@@ -1,5 +1,5 @@
 import { red } from "colors";
-import { API_AUTHORIZATION_TOKEN } from "../../core_layer/tokens/api_token";
+import { API_AUTHORIZATION_TOKEN, HOST } from "../../core_layer/tokens/api_token";
 
 export class Api_operations_executor {
 
@@ -16,7 +16,7 @@ export class Api_operations_executor {
         
         let config = {
           method: 'post',
-          url: `http://localhost:8080/api/v1/DEFAULT_PERSONAL/dashboard`,
+          url: `http://${HOST}:8080/api/v1/DEFAULT_PERSONAL/dashboard`,
           headers: { 
             'accept': '*/*', 
             'Content-Type': 'application/json', 
@@ -47,7 +47,7 @@ export class Api_operations_executor {
 
         let config = {
           method: 'get',
-          url: 'http://localhost:8080/api/v1/DEFAULT_PERSONAL/dashboard/shared',
+          url: `http://${HOST}:8080/api/v1/DEFAULT_PERSONAL/dashboard/shared`,
           headers: { 
             'accept': '*/*', 
             'Authorization': `Bearer ${token}`
@@ -93,7 +93,7 @@ export class Api_operations_executor {
         
         let config = {
           method: 'put',
-          url: `http://localhost:8080/api/v1/DEFAULT_PERSONAL/dashboard/${dashboardID}`,
+          url: `http://${HOST}:8080/api/v1/DEFAULT_PERSONAL/dashboard/${dashboardID}`,
           headers: { 
             'accept': '*/*', 
             'Content-Type': 'application/json', 
@@ -120,7 +120,7 @@ export class Api_operations_executor {
 
           let config = {
             method: 'delete',
-            url: `http://localhost:8080/api/v1/DEFAULT_PERSONAL/dashboard/${dashboardID}`,
+            url: `http://${HOST}:8080/api/v1/DEFAULT_PERSONAL/dashboard/${dashboardID}`,
             headers: { 
               'accept': '*/*', 
               'Authorization': `Bearer ${token}`
@@ -181,7 +181,7 @@ export class Api_operations_executor {
 
 let config = {
   method: 'post',
-  url: 'http://localhost:8080/api/v1/api/widget/',
+  url: `http://${HOST}:8080/api/v1/api/widget/`,
   headers: { 
     'Accept': 'application/json, text/plain, */*', 
     'Accept-Language': 'en-US,en;q=0.9', 
@@ -189,8 +189,8 @@ let config = {
     'Connection': 'keep-alive', 
     'Content-Type': 'application/json', 
     'Cookie': '_ga=GA1.1.1710169005.1667724095; _gid=GA1.1.1487771043.1667724095; _gat=1', 
-    'Origin': 'http://localhost:8080', 
-    'Referer': 'http://localhost:8080/ui/', 
+    'Origin': `http://${HOST}:8080`, 
+    'Referer': `http://${HOST}:8080/ui/`, 
     'Sec-Fetch-Dest': 'empty', 
     'Sec-Fetch-Mode': 'cors', 
     'Sec-Fetch-Site': 'same-origin', 
@@ -223,7 +223,7 @@ axios(config)
 
           let config = {
             method: 'get',
-            url: 'http://localhost:8080/api/v1/api/widget/names/all',
+            url: `http://${HOST}:8080/api/v1/api/widget/names/all`,
             headers: { 
               'accept': '*/*', 
               'Authorization': `bearer ${API_AUTHORIZATION_TOKEN}`
@@ -265,7 +265,7 @@ axios(config)
         
         let config = {
           method: 'put',
-          url: `http://localhost:8080/api/v1/api/widget/${widgetID}`,
+          url: `http://${HOST}:8080/api/v1/api/widget/${widgetID}`,
           headers: { 
             'accept': '*/*', 
             'Content-Type': 'application/json', 
@@ -293,7 +293,7 @@ axios(config)
 
         let config = {
           method: 'delete',
-          url: `http://localhost:8080/api/v1/api/dashboard/113/${widgetID}`,
+          url: `http://${HOST}:8080/api/v1/api/dashboard/113/${widgetID}`,
           headers: { 
             'accept': '*/*', 
             'Authorization': `bearer ${token}`

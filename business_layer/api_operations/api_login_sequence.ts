@@ -1,4 +1,4 @@
-import { API_AUTHORIZATION_TOKEN } from '../../core_layer/tokens/api_token';
+import { API_AUTHORIZATION_TOKEN, HOST } from '../../core_layer/tokens/api_token';
 export class Api_login_sequence {
 
   public getAPItoken = async () : Promise <any> => {
@@ -8,9 +8,9 @@ export class Api_login_sequence {
  
           let config = {
             method: 'get',
-            url: 'http://localhost:8080/uat/sso/me/apitoken',
+            url: `http://${HOST}:8080/uat/sso/me/apitoken`,
             headers: { 
-              'Host': 'localhost:8080', 
+              'Host': `${HOST}:8080`, 
               'Connection': 'keep-alive', 
               'sec-ch-ua': '"Not-A.Brand";v="99", "Opera GX";v="91", "Chromium";v="105"', 
               'Accept': 'application/json, text/plain, */*', 
@@ -21,7 +21,7 @@ export class Api_login_sequence {
               'Sec-Fetch-Site': 'same-origin', 
               'Sec-Fetch-Mode': 'cors', 
               'Sec-Fetch-Dest': 'empty', 
-              'Referer': 'http://localhost:8080/ui/', 
+              'Referer': `http://${HOST}:8080/ui/`, 
               'Accept-Encoding': 'gzip, deflate, br', 
               'Accept-Language': 'en-US,en;q=0.9', 
               'Cookie': '_ga=GA1.1.1392687408.1667470479; _gid=GA1.1.997938312.1667470479; _gat=1'
