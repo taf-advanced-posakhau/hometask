@@ -1,11 +1,13 @@
 const path = require('path');
 const fs= require('fs')
 // const RpService = require("wdio-reportportal-service");
+import { HOST } from '../../core_layer/tokens/api_token';
+
 
 
 
 export const headlessRunnerConfiguration = {
-    hostname : 'localhost',
+    hostname : `${HOST}`,
     port : 4444,
     servicesObject : ['chromedriver'],
     googleChromeOptions : {        

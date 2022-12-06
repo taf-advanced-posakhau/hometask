@@ -2,7 +2,8 @@ import type { Options } from '@wdio/types'
 import { yellow } from 'colors';
 const rimraf = require('rimraf');
 import { headlessRunnerConfiguration } from '../headlessRunnerConfiguration'
-
+import { HOST } from '../../tokens/api_token';
+ 
 console.log ( yellow ( `Executing mocha runner. Solution executing in ${process.env.parallel} flows in headless mode. ` ));
 
 let executePath = `test_layer/mocha_tests/specs/**/*.ts`;
@@ -58,7 +59,7 @@ export const config: Options.Testrunner = {
     
     bail: 0,
     
-    baseUrl: 'http://localhost:8080',
+    baseUrl: `http://${HOST}:8080`,
    
     waitforTimeout: 10000,
     
