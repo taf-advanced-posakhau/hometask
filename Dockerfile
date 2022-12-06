@@ -41,5 +41,5 @@ COPY package-lock.json package-lock.json
 COPY . .
 
 RUN npm install --force
-RUN npm run ht6
+RUN npm run mocha-api
 
