@@ -3,6 +3,9 @@ import { yellow } from 'colors';
 const rimraf = require('rimraf');
 import { headlessRunnerConfiguration } from '../headlessRunnerConfiguration'
 import { HOST } from '../../tokens/api_token';
+import { API_Slack_Notifier } from '../../../business_layer/api_operations/api_slack_notifier';
+
+const api_slack_notifier : API_Slack_Notifier = new API_Slack_Notifier();
  
 console.log ( yellow ( `Executing mocha runner. Solution executing in ${process.env.parallel} flows in headless mode. ` ));
 
@@ -90,7 +93,12 @@ export const config: Options.Testrunner = {
         },
     },
 
+    beforeTest: async function (test) {
+        await api_slack_notifier.PostSlackNotification ( `Execution of feature - ${test.parent} - has been started.` );       
+    },
+
     afterTest: async function (test, context, { error, result, duration, passed, retries }) {
+        await api_slack_notifier.PostSlackNotification ( `Execution of feature - ${test.parent} - has been finished.` );
         if (!passed) {
             await browser.takeScreenshot();
         }
@@ -101,8 +109,8 @@ export const config: Options.Testrunner = {
         rimraf.sync(`./reports*`);
     },
 
-    // onComplete: function (exitCode, config, capabilities, results) {
-    //     const mergeResults = require('wdio-mochawesome-reporter/mergeResults')
-    //     mergeResults('./reports/json/*', "results-*");
-    // },
+    onComplete: function (exitCode, config, capabilities, results) {
+        // const mergeResults = require('wdio-mochawesome-reporter/mergeResults')
+        // mergeResults('./reports/json/*', "results-*");
+    },
 }

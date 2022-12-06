@@ -2,6 +2,8 @@ import { Api_operations_executor } from '../../../../business_layer/api_operatio
 import { Api_login_sequence } from '../../../../business_layer/api_operations/api_login_sequence';
 import { assertEqualValues } from '../../../../core_layer/utilities/assertions';
 import { yellow } from 'colors';
+import { API_Slack_Notifier } from '../../../../business_layer/api_operations/api_slack_notifier';
+const api_slack_notifier : API_Slack_Notifier = new API_Slack_Notifier();
 const randomWords = require('random-words');
 
 
@@ -24,8 +26,8 @@ describe('creates new dashboard', async () => {
             arrayNames.push (element.name)
         }
         console.log(`Dashboard ${yellow(dashboardName)}  with ID ${await dashboardID.id} created successfully.`);     
-        await assertEqualValues ( arrayNames.includes( dashboardName ) , true );
-    });
+        await assertEqualValues ( arrayNames.includes( dashboardName ) , true );        
+    });    
 });
 
 
@@ -50,13 +52,12 @@ describe('updating existing dashboard', async () => {
         }        
                
         await assertEqualValues ( arrayNames.includes( updatedDashboard ) , true );
-        
-    });
+    });    
 });
 
 
 describe('removing existing dashboard', async () => {   
-
+   
     let arrayNames = [];
     let dashboardName = randomWords();
 
@@ -75,5 +76,6 @@ describe('removing existing dashboard', async () => {
             arrayNames.push (element.name)
         }
         await assertEqualValues ( arrayNames.includes( dashboardName ) , false );
-    });
+        
+    });    
 });

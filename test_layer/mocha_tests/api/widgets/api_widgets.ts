@@ -3,6 +3,8 @@ import { Api_login_sequence } from '../../../../business_layer/api_operations/ap
 import { assertEqualValues } from '../../../../core_layer/utilities/assertions';
 import { yellow } from 'colors';
 const randomWords = require('random-words');
+import { API_Slack_Notifier } from '../../../../business_layer/api_operations/api_slack_notifier';
+const api_slack_notifier : API_Slack_Notifier = new API_Slack_Notifier();
 
 const api_operations_executor : Api_operations_executor = new Api_operations_executor();
 const api_login_sequence : Api_login_sequence = new Api_login_sequence();
@@ -25,8 +27,9 @@ describe('creates new widget', async () => {
        
         console.log(`Widget ${yellow(widgetName)}  with ID ${await widgetID.id} created successfully.`);     
         await assertEqualValues ( arrayNames.includes( widgetName ) , true );
-        await api_operations_executor.deleteWidget ( api_token , widgetID.id );
+        await api_operations_executor.deleteWidget ( api_token , widgetID.id );        
     });
+    
 });
 
 
@@ -52,13 +55,14 @@ describe('modify widget', async () => {
         }
          
         await assertEqualValues ( arrayNames.includes( modifiedWidget ) , true );
-        await api_operations_executor.deleteWidget ( api_token , widgetID.id );
+        await api_operations_executor.deleteWidget ( api_token , widgetID.id );        
     });
+    
 });
 
 
 describe('delete widget', async () => {  
-    
+   
     let arrayNames = [];
     let widgetName = randomWords();
 
@@ -77,6 +81,6 @@ describe('delete widget', async () => {
         }
         
         await assertEqualValues ( arrayNames.includes( widgetName ) , false );
-        
     });
+    
 });
