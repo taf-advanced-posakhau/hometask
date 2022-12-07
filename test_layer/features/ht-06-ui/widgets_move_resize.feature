@@ -5,7 +5,7 @@ Feature: Hometask 06 - UI. The other widgets move while resizing - 01
                     
             Given browser navigated to primary url
               And user "default" logged in to reportportal
-              And browser navigated to "http://192.168.100.12:8080/ui/#default_personal/dashboard"
+              And browser navigated to "http://localhost:8080/ui/#default_personal/dashboard"
               And user clicks on dashboard "hometask-06-ui"
               
               

@@ -1,10 +1,12 @@
 import { INTERACTION_TIMEOUT, primary_url } from "../../core_layer/constants/constants";
+import { HOST } from "../../core_layer/tokens/api_token";
 import { waitCountdown } from "../../core_layer/utilities/core_actions";
 import { Then, When } from '../../node_modules/@wdio/cucumber-framework/build/index';
 
 When(/^browser navigated to primary url$/, async () => {
-    await browser.url(primary_url);
-    await browser.pause(5 * 1000);
+ 
+    await browser.url(primary_url);   
+    await browser.pause(15 * 1000);
 });
 
 Then(/^pause (.*) seconds$/, async (seconds: string) => {
@@ -16,5 +18,10 @@ Then(/^pause (.*) seconds$/, async (seconds: string) => {
 
 When(/^browser navigated to "(.*)"$/, async ( value : string ) => {
     await browser.url( value );
+    await browser.pause(7 * 1000);
+});
+
+When(/^browser navigated to project default dashboard$/, async () => {
+    await browser.url( `http://${HOST}:8080/ui/#default_personal/dashboard` );
     await browser.pause(7 * 1000);
 });

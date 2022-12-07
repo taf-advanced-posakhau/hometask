@@ -1,4 +1,4 @@
 export const  API_AUTHORIZATION_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzA0MTYzOTIsInVzZXJfbmFtZSI6ImRlZmF1bHQiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiNTYyOTljMDktNWY5ZS00OWE4LTk4M2QtOGI5NzlhODc2NmQ2IiwiY2xpZW50X2lkIjoidWkiLCJzY29wZSI6WyJ1aSJdfQ.mYPve221L0c1X7QjAPsRsbUMdN9FYlJd1bAgJBv7x1o"
 
-export const HOST = "192.168.100.12"
-// export const HOST = "localhost"
+// export const HOST = "192.168.100.12"
+export const HOST = "localhost"
