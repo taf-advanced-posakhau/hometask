@@ -5,10 +5,10 @@ export const REPORTPORTAL_LOCATORS = {
         loginButton: `//button[text()='Login']`
     },
     dashboard: {
-        draggableElement: `//div[text()='draggable_468']/parent::div/parent::div`,
+        draggableElement: `//div[text()='draggable_021']/parent::div/parent::div`,
         targetElement: `//div[@class='react-grid-layout']`,
-        resizeableWidgetPointer: `//div[text()='draggable_468']/parent::div/parent::div/parent::div/parent::div/parent::div/following-sibling::span`,
-        movableWidget: `//div[text()='api_filter_401']/parent::div/parent::div/parent::div/parent::div/parent::div/parent::div`,
+        resizeableWidgetPointer: `//div[text()='draggable_021']/parent::div/parent::div/parent::div/parent::div/parent::div/following-sibling::span`,
+        movableWidget: `//div[text()='api_filter_419']/parent::div/parent::div/parent::div/parent::div/parent::div/parent::div`,
         sizeableContentElement: `//div[contains(@class,'widget-wrapper')]`
     },
     

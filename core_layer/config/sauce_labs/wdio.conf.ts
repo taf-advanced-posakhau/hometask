@@ -1,12 +1,44 @@
+const SAUCE_USERNAME = `oauth-taf.advanced.posakhau-fd38a`;
+const SAUCE_ACCESS_KEY = `bf9d4626-8617-4a25-b155-f5e3a9398d8a`;
+
+const RpService = require("wdio-reportportal-service");
+const { Reporter } = require('@reportportal/agent-js-webdriverio');
+
+const rpConfig = {
+    token: '8dea83a4-ddcf-4810-b255-9821af48c9ce',
+    endpoint: 'http://localhost:8080/api/v1',
+    project: 'default_personal',
+    launch: 'default_TEST_EXAMPLE',
+    mode: 'DEFAULT',
+    debug: false,
+    description: "Static launch description",
+    attributes: [{ key: 'key', value: 'value' }, { value: 'value' }],
+    attachPicturesToLogs: true,
+
+    reportSeleniumCommands: true, // add selenium commands to log
+    seleniumCommandsLogLevel: 'debug', // log level for selenium commands
+    autoAttachScreenshots: true, // automatically add screenshots
+    screenshotsLogLevel: 'info', // log level for screenshots
+    parseTagsFromTestTitle: true, // parse strings like `@foo` from titles and add to Report Portal
+    cucumberNestedSteps: false, // report cucumber steps as Report Portal steps
+    autoAttachCucumberFeatureToScenario: true, // requires cucumberNestedSteps to be true for use
+    sanitizeErrorMessages: true, // strip color ascii characters from error stacktrace
+    sauceLabOptions : {
+        enabled: true, // automatically add SauseLab ID to rp tags.
+        sldc: "US" // automatically add SauseLab region to rp tags.
+    }
+};
+
+
+
 import type { Options } from '@wdio/types'
 import { bgBlue, yellow } from 'colors';
-import { localRunnerConfiguration } from './localRunnerConfiguration'
-import { headlessRunnerConfiguration } from './headlessRunnerConfiguration'
-import { suitesRunnerConfig } from './suitesRunnerConfiguration'
-import { HOST } from '../tokens/api_token';
-import { PATH_LOGO } from '../constants/constants';
+import { localRunnerConfiguration } from './../localRunnerConfiguration'
+import { headlessRunnerConfiguration } from './../headlessRunnerConfiguration'
+import { suitesRunnerConfig } from './../suitesRunnerConfiguration'
+import { PATH_LOGO } from '../../constants/constants';
 
-console.log ( yellow ( `Executing cucumber runner. Solution executing in ${process.env.parallel} flows. ` ));
+console.log ( yellow ( `Executing in SAUCE LABS. ` ));
 
 let stepNumber = 1;
 let startTime;
@@ -23,7 +55,6 @@ const pathToTestReportsDir = 'core_layer/reporter/test_reports/test_artifacts/tr
 const pathToHtmlReportDir = `${pathToTestReportsDir}html/`;
 const pathToHtmlReport = `${pathToHtmlReportDir}cucumber_report.html`;
 const pathToCucumberJsonReport = `${pathToJsonReportsDir}cucumber_report.json`;
-
 
 let options = {
     theme: 'bootstrap',
@@ -42,24 +73,31 @@ let options = {
     ]
 };
 
-// RUN TYPE DETERMINATION:
 let environmentRunnerOptions = null;
 if (process.env.runType == 'headless') { 
     environmentRunnerOptions = headlessRunnerConfiguration;    
 } else {
     environmentRunnerOptions = localRunnerConfiguration;    
 }
- 
-export const config: Options.Testrunner = {
 
-    autoCompileOpts: {
+export const config = {   
+    user: SAUCE_USERNAME,
+    key: SAUCE_ACCESS_KEY,
+    region: 'eu', // or 'eu' or 'apac'
+    services: [
+        ['sauce', {
+            sauceConnect: true,
+            sauceConnectOpts: {}
+        }], 
+        [RpService, {}]
+    ],
+        autoCompileOpts: {
         autoCompile: true,      
         tsNodeOpts: {
             transpileOnly: true,
             project: 'core_layer/config/tsconfig.json'
         }     
-    },
-   
+    },   
     specs: [
         '.test_layer/features/**/*.feature'
     ],
@@ -68,23 +106,28 @@ export const config: Options.Testrunner = {
         // 'path/to/excluded/files'
     ],   
     maxInstances: 10,  
- 
     capabilities: [{
-        maxInstances: parseInt(process.env.parallel),  
+        maxInstances:1,  
         'goog:chromeOptions': environmentRunnerOptions.googleChromeOptions,
-        browserName: 'chrome',           
-        acceptInsecureCerts: true,        
+        browserName: 'chrome',
+        acceptInsecureCerts: true,       
+        platformName: 'Windows 10',
+        browserVersion: 'latest',
+        // Sauce options can be found here https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options
+        'sauce:options': {
+            tunnelIdentifier: 'oauth-taf.advanced.posakhau-fd38a_tunnel_name',            
+            build: 'Localhost tunnel',
+            screenResolution: '1920x1080',            
+        },      
     }],   
     logLevel: 'error',
     bail: 0,   
-    baseUrl: `http://${HOST}:8080`,  
+    baseUrl: 'http://localhost:8080',  
     waitforTimeout: 10000, 
     connectionRetryTimeout: 120000, 
-    connectionRetryCount: 3,   
-
-    services: ['chromedriver'],
+    connectionRetryCount: 3,       
     framework: 'cucumber',   
-    reporters: ['cucumberjs-json'],
+    reporters: [[Reporter, rpConfig] ,'cucumberjs-json'],
 
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
@@ -111,8 +154,7 @@ export const config: Options.Testrunner = {
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
- 
-     onPrepare() {
+    onPrepare() {
         rimraf.sync(`./Results*`);
         rimraf.sync(`./reports*`);
         rimraf.sync(`${pathToJsonReportsDir}*`);
@@ -170,6 +212,5 @@ export const config: Options.Testrunner = {
             });
         }
     },
-}
-
+};
 
