@@ -1,6 +1,36 @@
 const SAUCE_USERNAME = `oauth-taf.advanced.posakhau-fd38a`;
 const SAUCE_ACCESS_KEY = `bf9d4626-8617-4a25-b155-f5e3a9398d8a`;
 
+const RpService = require("wdio-reportportal-service");
+const { Reporter } = require('@reportportal/agent-js-webdriverio');
+
+const rpConfig = {
+    token: '8dea83a4-ddcf-4810-b255-9821af48c9ce',
+    endpoint: 'http://localhost:8080/api/v1',
+    project: 'default_personal',
+    launch: 'default_TEST_EXAMPLE',
+    mode: 'DEFAULT',
+    debug: false,
+    description: "Static launch description",
+    attributes: [{ key: 'key', value: 'value' }, { value: 'value' }],
+    attachPicturesToLogs: true,
+
+    reportSeleniumCommands: true, // add selenium commands to log
+    seleniumCommandsLogLevel: 'debug', // log level for selenium commands
+    autoAttachScreenshots: true, // automatically add screenshots
+    screenshotsLogLevel: 'info', // log level for screenshots
+    parseTagsFromTestTitle: true, // parse strings like `@foo` from titles and add to Report Portal
+    cucumberNestedSteps: false, // report cucumber steps as Report Portal steps
+    autoAttachCucumberFeatureToScenario: true, // requires cucumberNestedSteps to be true for use
+    sanitizeErrorMessages: true, // strip color ascii characters from error stacktrace
+    sauceLabOptions : {
+        enabled: true, // automatically add SauseLab ID to rp tags.
+        sldc: "US" // automatically add SauseLab region to rp tags.
+    }
+};
+
+
+
 import type { Options } from '@wdio/types'
 import { bgBlue, yellow } from 'colors';
 import { localRunnerConfiguration } from './../localRunnerConfiguration'
@@ -58,7 +88,8 @@ export const config = {
         ['sauce', {
             sauceConnect: true,
             sauceConnectOpts: {}
-        }]
+        }], 
+        [RpService, {}]
     ],
         autoCompileOpts: {
         autoCompile: true,      
@@ -96,7 +127,7 @@ export const config = {
     connectionRetryTimeout: 120000, 
     connectionRetryCount: 3,       
     framework: 'cucumber',   
-    reporters: ['cucumberjs-json'],
+    reporters: [[Reporter, rpConfig] ,'cucumberjs-json'],
 
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
